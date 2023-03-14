@@ -89,8 +89,6 @@ header .navbar > ul > li {
   display: none;
   position: absolute;
   z-index: 1;
-
-  padding-top: 10px;
   right: -35px;
   top: 54px;
   width: 120px;
@@ -119,7 +117,10 @@ header .navbar > ul > li {
 }
 .dropdown-content a:hover {
   background-color: rgb(236, 176, 176);
-  border-radius: 20px 20px 20px 20px;
+}
+
+.dropdown-content > a.last-dropdown-element:hover {
+  border-radius: 0 0 0 20px;
 }
 
 .main-section {
