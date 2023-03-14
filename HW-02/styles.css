@@ -311,6 +311,7 @@ footer > .list > li > a {
   justify-content: center;
   align-items: center;
   display: relative;
+  margin-top: -46px;
 }
 
 .btn-x > span {
@@ -332,5 +333,12 @@ footer > .list > li > a {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 769px) {
+  .popup {
+    display: none;
+    visibility: hidden;
   }
 }
