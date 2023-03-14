@@ -38,6 +38,7 @@ header > .navbar > .list {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   flex-wrap: nowrap;
 }
 
@@ -172,7 +173,21 @@ footer > .list > li > a {
   }
 }
 
-.dropdown {
+.settings {
   position: relative;
-  display: inline-block;
+  font-size: xx-large;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.settings:hover .dropdown-content {
+  display: block;
 }
