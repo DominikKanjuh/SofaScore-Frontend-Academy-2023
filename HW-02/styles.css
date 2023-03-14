@@ -261,7 +261,7 @@ footer > .list > li > a {
 }
 
 .popup:target {
-  display: flex;
+  display: block;
 }
 
 .popup {
@@ -298,6 +298,27 @@ footer > .list > li > a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn-x {
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: rgb(236, 176, 176);
+  border-radius: 50px 50px 50px 50px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: relative;
+}
+
+.btn-x > span {
+  font-size: xx-large;
+}
+
+.btn-x:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
