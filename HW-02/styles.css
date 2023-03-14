@@ -123,6 +123,14 @@ header .navbar > ul > li {
   border-radius: 0 0 0 20px;
 }
 
+.btn-settings {
+  width: 100%;
+  border: none;
+  font-size: xx-large;
+  color: white;
+  background-color: lightcoral;
+}
+
 .main-section {
   display: flex;
   justify-content: center;
@@ -203,10 +211,12 @@ footer {
   border-radius: 25px 25px 0 0;
   border: 4px solid rgba(255, 255, 255, 0.5);
   border-bottom: none;
+  z-index: 1;
 }
 
 footer > .list {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -214,15 +224,80 @@ footer > .list {
 }
 
 footer > .list > li {
-  display: inline-block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   list-style: none;
-  margin: 10px 30px;
+  padding: 0px 30px;
 }
 
 footer > .list > li > a {
   text-decoration: none;
   color: white;
   font-size: 20px;
+}
+
+.btn-plus {
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: rgb(236, 176, 176);
+  border-radius: 50px 50px 50px 50px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: relative;
+}
+
+.btn-plus > span {
+  font-size: xx-large;
+}
+
+.btn-plus:hover {
+  cursor: pointer;
+}
+
+.popup:target {
+  display: flex;
+}
+
+.popup {
+  display: none;
+  position: absolute;
+  bottom: 75px;
+  left: 20vw;
+  z-index: 1;
+  width: 60vw;
+  height: 250px;
+
+  background-color: lightcoral;
+  border-radius: 25px 25px 0 0;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.popup > .popup-nav {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.popup > .popup-nav > a {
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -237,12 +312,4 @@ footer > .list > li > a {
     align-items: center;
     flex-wrap: nowrap;
   }
-}
-
-.btn-settings {
-  width: 100%;
-  border: none;
-  font-size: xx-large;
-  color: white;
-  background-color: lightcoral;
 }
