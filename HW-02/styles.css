@@ -18,6 +18,15 @@ header {
   border-radius: 0 0 25px 25px;
   border: 4px solid rgba(255, 255, 255, 0.5);
   border-top: none;
+
+  pointer-events: none;
+  /* ovo je da mogu maknut desni border kad pointam na settings */
+}
+
+header:hover {
+  border-right: none;
+  padding-right: 4px;
+  border-radius: 0 0 0 25px;
 }
 
 .navbar {
@@ -26,7 +35,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
 
 .navbar > img {
@@ -36,26 +44,82 @@ header {
 
 header > .navbar > .list {
   width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
 }
 
 header > .navbar > .list > li {
-  display: inline-block;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   list-style: none;
-  margin: 10px 30px;
+  padding: 0px 30px;
 }
 
 header > .navbar > .list > li > a {
+  justify-self: center;
   text-decoration: none;
   color: white;
   font-size: 20px;
 }
 
-.navbar > ul > li > a:hover {
+.navbar > ul > li:hover {
   background-color: rgb(236, 176, 176);
+}
+
+.navbar > ul > li.settings:hover {
+  background-color: lightcoral;
+}
+
+header .navbar > ul > li {
+  pointer-events: auto; /* enables the hover on the .parent */
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+
+  padding-top: 10px;
+  right: -35px;
+  top: 54px;
+  width: 120px;
+
+  background-color: lightcoral;
+  border-radius: 0 0 0 25px;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-right: 0;
+  border-top: 0;
+}
+
+.settings:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-flow: nowrap nowrap;
+}
+
+.dropdown-content a {
+  display: block;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  background-color: rgb(236, 176, 176);
+  border-radius: 20px 20px 20px 20px;
 }
 
 .main-section {
@@ -180,29 +244,4 @@ footer > .list > li > a {
   font-size: xx-large;
   color: white;
   background-color: lightcoral;
-}
-
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  width: 100%;
-  overflow: auto;
-  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown-content a {
-  display: block;
-  color: #000000;
-  padding: 5px;
-  text-decoration: none;
-}
-.dropdown-content a:hover {
-  color: #ffffff;
-  background-color: #00a4bd;
 }
