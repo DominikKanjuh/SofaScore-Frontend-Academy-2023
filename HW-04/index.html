@@ -7,9 +7,8 @@
     <title>Pokemon by D.K.</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="pokemonType.js"></script>
-    <script src="pokemonFavorite.js"></script>
-    <script src="pokemonAll.js"></script>
+
+    <script src="pokemon.js"></script>
   </head>
   <body>
     <div class="container">
@@ -56,8 +55,10 @@
             onclick="getPokemonFavoriteList()"
             >Favorite Pokemon</label
           >
-          <div id="pokemon-list-favorite"></div>
-          <div id="pagination-favorite"></div>
+          <div class="tab-content">
+            <div id="pokemon-list-favorite"></div>
+            <div id="pagination-favorite"></div>
+          </div>
         </div>
       </div>
     </div>
