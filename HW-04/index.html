@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon by D.K.</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tabs">
+        <div class="tab">
+          <input
+            type="radio"
+            name="css-tabs"
+            id="tab-1"
+            checked
+            class="tab-switch"
+          />
+          <label for="tab-1" class="tab-label">All Pokemon</label>
+          <div class="tab-content">
+            <div class="pokemon-list-all" id="pokemon-list-all"></div>
+            <div class="pagination-all" id="pagination-all"></div>
+          </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-2" class="tab-switch" />
+          <label for="tab-2" class="tab-label">Pokemon By Type</label>
+          <div id="pokemon-type" class="tab-content">
+            <label for="type">Select Pokemon Type:</label>
+            <select id="type" name="type" onchange="getPokemonTypeList()">
+              <option value="">Select a type</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="electric">Electric</option>
+              <option value="grass">Grass</option>
+              <option value="ice">Ice</option>
+              <option value="ground">Ground</option>
+            </select>
+            <div id="pokemon-list-type"></div>
+            <div id="pagination-type"></div>
+          </div>
+        </div>
+        <div class="tab">
+          <input type="radio" name="css-tabs" id="tab-3" class="tab-switch" />
+          <label for="tab-3" class="tab-label">Favorite Pokemon</label>
+          <div class="tab-content">favourite</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
