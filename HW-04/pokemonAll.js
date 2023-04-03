@@ -1,31 +1,30 @@
 const itemsPerPage = 6;
-let pokemonListType = [];
+let pokemonList = [];
 
-async function getPokemonTypeList() {
-  let type = document.getElementById("type").value;
+async function getAllPokemonList() {
+  console.log("BOk iz all");
+  document.getElementById("pokemon-list-all").innerHTML = "";
+  document.getElementById("pagination-all").innerHTML = "";
 
-  document.getElementById("pokemon-list-type").innerHTML = "";
-  document.getElementById("pagination-type").innerHTML = "";
-
-  await fetch(`https://pokeapi.co/api/v2/type/${type}`)
+  await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000`)
     .then((response) => response.json())
     .then((data) => {
-      pokemonListType = data.pokemon;
+      pokemonList = data.results;
       let currentPage = 1;
-      let totalPages = Math.ceil(pokemonListType.length / itemsPerPage);
-      showPokemonTypePage(currentPage, totalPages);
+      let totalPages = Math.ceil(pokemonList.length / itemsPerPage);
+      showPokemonPage(currentPage, totalPages);
     })
     .catch((error) => console.error(error));
 }
 
-function showPokemonTypePage(currentPage, totalPages) {
+function showPokemonPage(currentPage, totalPages) {
   let startIndex = (currentPage - 1) * itemsPerPage;
   let endIndex = startIndex + itemsPerPage;
-  let currentPokemonListType = pokemonListType.slice(startIndex, endIndex);
+  let currentPokemonList = pokemonList.slice(startIndex, endIndex);
 
   let html = "";
-  currentPokemonListType.forEach((pokemon) => {
-    fetch(pokemon.pokemon.url)
+  currentPokemonList.forEach((pokemon) => {
+    fetch(pokemon.url)
       .then((response) => response.json())
       .then((pokemon) => {
         let imgSrc = pokemon.sprites.front_default;
@@ -34,36 +33,24 @@ function showPokemonTypePage(currentPage, totalPages) {
         let abilities = pokemon.abilities.map((a) => a.ability.name).join(", ");
         let id = pokemon.id;
         let cardHtml = `
-          
-            <button class="accordion">
-            <div class="pokemon-card">
+          <div class="pokemon-card">
             <div class="pokemon-card-image">
               <img src="${imgSrc}" alt="${name}">
             </div>
-              <div class="pokemon-card-name">${capitalizeFirstLetter(
-                name
-              )}</div>
-          </div>
-          
-          </button>
-            <div class="panel">
-            <div class="pokemon-card-details>
+            <div class="pokemon-card-name">${capitalizeFirstLetter(name)}</div>
+            <div class="pokemon-card-details">
               <div class="pokemon-card-types">Type: ${types}</div>
-              <div class="pokemon-card-height">Height: ${pokemon.height} m</div>
-              <div class="pokemon-card-weight">Weight: ${pokemon.weight}</div>
+              <div class="pokemon-card-height">Height: ${pokemon.height}m</div>
+              <div class="pokemon-card-weight">Weight: ${pokemon.weight}kg</div>
               <div class="pokemon-card-abilities">Abilities: ${abilities}</div>
-
               <div class="heart-button" onclick="addToFavorites(${id})" data-id="${id}">
-             </div>
-             
+                <i class="far fa-heart"></i>
+              </div>
             </div>
-            
-          </div>
-
           </div>
         `;
         html += cardHtml;
-        document.getElementById("pokemon-list-type").innerHTML = html;
+        document.getElementById("pokemon-list-all").innerHTML = html;
       })
       .catch((error) => console.error(error));
   });
@@ -77,34 +64,17 @@ function showPagination(currentPage, totalPages) {
     if (i === currentPage) {
       html += `<button style="color: red; border-color: red;">${i}</button>`;
     } else {
-      html += `<button onclick="showPokemonTypePage(${i}, ${totalPages})">${i}</button>`;
+      html += `<button onclick="showPokemonPage(${i}, ${totalPages})">${i}</button>`;
     }
   }
   html += `</div>`;
-  document.getElementById("pagination-type").innerHTML = html;
+  document.getElementById("pagination-all").innerHTML = html;
 }
 
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// modify this code
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = "30px";
-    }
-  });
-}
-
-// to this
 document.addEventListener("click", function (event) {
   if (event.target && event.target.classList.contains("accordion")) {
     event.target.classList.toggle("active");
@@ -112,7 +82,7 @@ document.addEventListener("click", function (event) {
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
     } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.maxHeight = 40 + "px";
     }
   }
 });
