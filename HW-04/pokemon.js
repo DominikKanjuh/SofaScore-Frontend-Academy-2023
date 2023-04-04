@@ -310,6 +310,7 @@ function addToFavorites(id) {
     document
       .querySelector(`.heart-button[data-id='${id}']`)
       .classList.remove("full-heart");
+    getPokemonFavoriteList();
   }
 }
 
