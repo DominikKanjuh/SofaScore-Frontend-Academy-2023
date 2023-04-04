@@ -10,7 +10,7 @@
 
     <script src="pokemon.js"></script>
   </head>
-  <body>
+  <body onload="getAllPokemonList(), getPokemonFavoriteList()">
     <div class="container">
       <div class="tabs">
         <div class="tab">
@@ -21,9 +21,7 @@
             checked
             class="tab-switch"
           />
-          <label for="tab-1" class="tab-label" onclick="getAllPokemonList()"
-            >All Pokemon</label
-          >
+          <label for="tab-1" class="tab-label">All Pokemon</label>
           <div class="tab-content">
             <div class="pokemon-list-all" id="pokemon-list-all"></div>
             <div class="pagination-all" id="pagination-all"></div>
@@ -49,12 +47,7 @@
         </div>
         <div class="tab">
           <input type="radio" name="css-tabs" id="tab-3" class="tab-switch" />
-          <label
-            for="tab-3"
-            class="tab-label"
-            onclick="getPokemonFavoriteList()"
-            >Favorite Pokemon</label
-          >
+          <label for="tab-3" class="tab-label">Favorite Pokemon</label>
           <div class="tab-content">
             <div id="pokemon-list-favorite"></div>
             <div id="pagination-favorite"></div>

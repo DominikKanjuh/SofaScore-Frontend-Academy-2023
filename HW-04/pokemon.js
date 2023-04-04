@@ -311,6 +311,7 @@ function addToFavorites(id) {
       .querySelector(`.heart-button[data-id='${id}']`)
       .classList.remove("full-heart");
     getPokemonFavoriteList();
+    //dodo za refresh favorita
   }
 }
 
