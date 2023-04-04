@@ -3,6 +3,7 @@ let pokemonListAll = [];
 let pokemonListType = [];
 let pokemonListFavorite = [];
 
+///////////////////////////////////////
 async function getAllPokemonList() {
   document.getElementById("pokemon-list-all").innerHTML = "";
   document.getElementById("pagination-all").innerHTML = "";
@@ -13,12 +14,12 @@ async function getAllPokemonList() {
       pokemonListAll = data.results;
       let currentPage = 1;
       let totalPages = Math.ceil(pokemonListAll.length / itemsPerPage);
-      showPokemonPage(currentPage, totalPages);
+      showPokemonPageAll(currentPage, totalPages);
     })
     .catch((error) => console.error(error));
 }
 
-function showPokemonPage(currentPage, totalPages) {
+function showPokemonPageAll(currentPage, totalPages) {
   let startIndex = (currentPage - 1) * itemsPerPage;
   let endIndex = startIndex + itemsPerPage;
   let currentPokemonListAll = pokemonListAll.slice(startIndex, endIndex);
@@ -33,6 +34,13 @@ function showPokemonPage(currentPage, totalPages) {
         let types = pokemon.types.map((type) => type.type.name).join(", ");
         let abilities = pokemon.abilities.map((a) => a.ability.name).join(", ");
         let id = pokemon.id;
+
+        let heartClass = "heart-button";
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if (favorites.includes(id)) {
+          heartClass += " full-heart";
+        }
+
         let cardHtml = `
           
             <button class="accordion">
@@ -53,7 +61,7 @@ function showPokemonPage(currentPage, totalPages) {
               <div class="pokemon-card-weight">Weight: ${pokemon.weight}kg</div>
               <div class="pokemon-card-abilities">Abilities: ${abilities}</div>
 
-              <div class="heart-button" onclick="addToFavorites(${id})" data-id="${id}">
+              <div class="${heartClass}" onclick="addToFavorites(${id})" data-id="${id}">
              </div>
              
             </div>
@@ -77,7 +85,7 @@ function showPaginationAll(currentPage, totalPages) {
     if (i === currentPage) {
       html += `<button style="color: red; border-color: red;">${i}</button>`;
     } else {
-      html += `<button onclick="showPokemonPage(${i}, ${totalPages})">${i}</button>`;
+      html += `<button onclick="showPokemonPageAll(${i}, ${totalPages})">${i}</button>`;
     }
   }
   html += `</div>`;
@@ -120,34 +128,45 @@ function showPokemonTypePage(currentPage, totalPages) {
         let types = pokemon.types.map((type) => type.type.name).join(", ");
         let abilities = pokemon.abilities.map((a) => a.ability.name).join(", ");
         let id = pokemon.id;
-        let cardHtml = `
-          
-            <button class="accordion">
-            <div class="pokemon-card">
-            <div class="pokemon-card-image">
-              <img src="${imgSrc}" alt="${name}">
-            </div>
-              <div class="pokemon-card-name">${capitalizeFirstLetter(
-                name
-              )}</div>
-          </div>
-          
-          </button>
-            <div class="panel">
-            <div class="pokemon-card-details>
-              <div class="pokemon-card-types">Type: ${types}</div>
-              <div class="pokemon-card-height">Height: ${pokemon.height}m</div>
-              <div class="pokemon-card-weight">Weight: ${pokemon.weight}kg</div>
-              <div class="pokemon-card-abilities">Abilities: ${abilities}</div>
-              <div class="heart-button" onclick="addToFavorites(${id})" data-id="${id}">
-             </div>
-             
-            </div>
-            
-          </div>
 
-          </div>
-        `;
+        let heartClass = "heart-button";
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if (favorites.includes(id)) {
+          heartClass += " full-heart";
+        }
+
+        let cardHtml = `
+              
+                <button class="accordion">
+                <div class="pokemon-card">
+                <div class="pokemon-card-image">
+                  <img src="${imgSrc}" alt="${name}">
+                </div>
+                  <div class="pokemon-card-name">${capitalizeFirstLetter(
+                    name
+                  )}</div>
+              </div>
+              
+              </button>
+                <div class="panel">
+                <div class="pokemon-card-details>
+                  <div class="pokemon-card-types">Type: ${types}</div>
+                  <div class="pokemon-card-height">Height: ${
+                    pokemon.height
+                  }m</div>
+                  <div class="pokemon-card-weight">Weight: ${
+                    pokemon.weight
+                  }kg</div>
+                  <div class="pokemon-card-abilities">Abilities: ${abilities}</div>
+                  <div class="${heartClass}" onclick="addToFavorites(${id})" data-id="${id}">
+                 </div>
+                 
+                </div>
+                
+              </div>
+    
+              </div>
+            `;
         html += cardHtml;
         document.getElementById("pokemon-list-type").innerHTML = html;
       })
@@ -174,7 +193,6 @@ function showPaginationType(currentPage, totalPages) {
 //////////////////////////////////////
 
 async function getPokemonFavoriteList() {
-  console.log("bok iz favorite");
   document.getElementById("pokemon-list-favorite").innerHTML = "";
   document.getElementById("pagination-favorite").innerHTML = "";
 
@@ -183,7 +201,7 @@ async function getPokemonFavoriteList() {
 
   let currentPage = 1;
   let totalPages = Math.ceil(pokemonListFavorite.length / itemsPerPage);
-  showPokemonTypePage(currentPage, totalPages);
+  showPokemonFavoritePage(currentPage, totalPages);
 }
 
 async function getPokemonById(id) {
@@ -192,7 +210,7 @@ async function getPokemonById(id) {
   return data;
 }
 
-function showPokemonTypePage(currentPage, totalPages) {
+function showPokemonFavoritePage(currentPage, totalPages) {
   let startIndex = (currentPage - 1) * itemsPerPage;
   let endIndex = startIndex + itemsPerPage;
   let currentPokemonListFavorite = pokemonListFavorite.slice(
@@ -207,6 +225,13 @@ function showPokemonTypePage(currentPage, totalPages) {
     let types = pokemon.types.map((type) => type.type.name).join(", ");
     let abilities = pokemon.abilities.map((a) => a.ability.name).join(", ");
     let id = pokemon.id;
+
+    let heartClass = "heart-button";
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (favorites.includes(id)) {
+      heartClass += " full-heart";
+    }
+
     let cardHtml = `
           
             <button class="accordion">
@@ -227,7 +252,7 @@ function showPokemonTypePage(currentPage, totalPages) {
               <div class="pokemon-card-weight">Weight: ${pokemon.weight}kg</div>
               <div class="pokemon-card-abilities">Abilities: ${abilities}</div>
 
-              <div class="heart-button" onclick="addToFavorites(${id})" data-id="${id}">
+              <div class="${heartClass}" onclick="addToFavorites(${id})" data-id="${id}">
              </div>
              
             </div>
@@ -249,14 +274,15 @@ function showPaginationFavorite(currentPage, totalPages) {
     if (i === currentPage) {
       html += `<button style="color: red; border-color: red;">${i}</button>`;
     } else {
-      html += `<button onclick="showPokemonTypePage(${i}, ${totalPages})">${i}</button>`;
+      html += `<button onclick="showPokemonFavoritePage(${i}, ${totalPages})">${i}</button>`;
     }
   }
   html += `</div>`;
   document.getElementById("pagination-favorite").innerHTML = html;
 }
 
-//////
+////////////////////////////////////////////
+//sve iste funckcije za sve
 
 document.addEventListener("click", function (event) {
   if (event.target && event.target.classList.contains("accordion")) {
