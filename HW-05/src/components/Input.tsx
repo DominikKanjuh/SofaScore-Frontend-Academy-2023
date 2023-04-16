@@ -37,10 +37,13 @@ export default function Input() {
     // store new circle in your state and then reset the selector to default radius
     // get your next circle parameters other than radius with `getRandomCircleParameters` method
 
-    setCircles([...circles, getRandomCircleParameters(currentRadius)]);
+    setCircles([...circles, getRandomCircleParameters(currentRadius)]); //spremanje u listu krugova
 
     setCurrentRadius(DEFAULT_SELECTED_RADIUS);
+    //vracanje na default radius
+
     localStorage.setItem("circles", JSON.stringify(circles));
+    //za locale storage
   };
 
   return (
