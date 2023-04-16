@@ -10,6 +10,8 @@ interface PokemonResponse {
 }
 
 export default function Fetch() {
+  //nisam znao je li potreban ovaj dio da se zna koji su prije pokemoni dosli, ali sam ga napravio svejedno
+  //ukoliko to nije bilo potrebno nadam se da necete uzeti za zlo :D
   const [pokemon, setPokemon] = useState<PokemonResponse[]>(() => {
     const localData = localStorage.getItem("pokemons");
     return localData ? JSON.parse(localData) : [];
@@ -28,8 +30,7 @@ export default function Fetch() {
 
   useEffect(() => {
     fetchPokemon(fetchNumber);
-    //ovo je na pocetku da bi se pokazalo pri prvom renderu
-    //spremi se u listu pokemona
+    //ovaj fetch se poziva svaki put kad se promijeni fetchNumber
   }, [fetchNumber]);
 
   // your task here is to fetch Pokémon from a given URL and just display its name
@@ -42,7 +43,8 @@ export default function Fetch() {
   const fetchPokemon = async (id: number) => {
     //we fetch the Pokemon, convert it to json and we have p object of type PokemonResponse
     const p: PokemonResponse = await (await fetch(getPokemonUrl(id))).json();
-    setPokemon([...pokemon, p]);
+    const pokemonBitniDijelovi = { id: id, name: p.name };
+    setPokemon([...pokemon, pokemonBitniDijelovi]);
     localStorage.setItem("pokemons", JSON.stringify(pokemon));
     localStorage.setItem("fetchNumber", JSON.stringify(fetchNumber));
   };
@@ -56,9 +58,11 @@ export default function Fetch() {
         FETCH
       </button>
       {/* display Pokémon in a list here, just display a div with its name for each Pokémon */}
-      <ul>
+      <ul className="pokemon-list">
         {pokemon.map((p) => (
-          <li key={p.id}>{`${p.id}. ${p.name}`}</li>
+          <li key={p.id} className="pokemon-card">
+            {`${p.id}. ${p.name}`}{" "}
+          </li>
         ))}
       </ul>
     </div>
