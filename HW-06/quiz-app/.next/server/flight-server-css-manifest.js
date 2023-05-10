@@ -1,0 +1,10 @@
+self.__RSC_CSS_MANIFEST={
+  "cssImports": {
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/src/app/layout.tsx": [
+      "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}"
+    ]
+  },
+  "cssModules": {
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/src/app/page": []
+  }
+}
