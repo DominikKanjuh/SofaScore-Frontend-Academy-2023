@@ -1,10 +1,9 @@
 self.__RSC_CSS_MANIFEST={
-  "cssImports": {
-    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/src/app/layout.tsx": [
-      "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/font/google/target.css?{\"path\":\"src/app/layout.tsx\",\"import\":\"Inter\",\"arguments\":[{\"subsets\":[\"latin\"]}],\"variableName\":\"inter\"}"
-    ]
-  },
+  "cssImports": {},
   "cssModules": {
-    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/src/app/page": []
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/page": [],
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page": [],
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/quiz/page": [],
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/leaderboard/page": []
   }
 }

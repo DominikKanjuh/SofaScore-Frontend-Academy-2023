@@ -741,6 +741,144 @@ self.__RSC_MANIFEST={
         ],
         "async": false
       }
+    },
+    "(app-client)/./components/Icon.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/Icon.tsx",
+        "name": "*",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./components/Icon.tsx",
+        "name": "",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "Icon": {
+        "id": "(sc_client)/./components/Icon.tsx",
+        "name": "Icon",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./components/Icon.tsx",
+        "name": "default",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      }
+    },
+    "(app-client)/./components/Main.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/Main.tsx",
+        "name": "*",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./components/Main.tsx",
+        "name": "",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "Main": {
+        "id": "(sc_client)/./components/Main.tsx",
+        "name": "Main",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      }
+    },
+    "(app-client)/./components/Sidebar.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/Sidebar.tsx",
+        "name": "*",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./components/Sidebar.tsx",
+        "name": "",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./components/Sidebar.tsx",
+        "name": "default",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      }
+    },
+    "(app-client)/./node_modules/next/dist/client/link.js": {
+      "*": {
+        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
+        "name": "*",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
+        "name": "",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./node_modules/next/dist/client/link.js",
+        "name": "default",
+        "chunks": [
+          "app/layout:static/chunks/app/layout.js"
+        ],
+        "async": false
+      }
+    },
+    "(app-client)/./app/learn/page.tsx": {
+      "*": {
+        "id": "(sc_client)/./app/learn/page.tsx",
+        "name": "*",
+        "chunks": [
+          "app/learn/page:static/chunks/app/learn/page.js"
+        ],
+        "async": false
+      },
+      "": {
+        "id": "(sc_client)/./app/learn/page.tsx",
+        "name": "",
+        "chunks": [
+          "app/learn/page:static/chunks/app/learn/page.js"
+        ],
+        "async": false
+      },
+      "default": {
+        "id": "(sc_client)/./app/learn/page.tsx",
+        "name": "default",
+        "chunks": [
+          "app/learn/page:static/chunks/app/learn/page.js"
+        ],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -2439,6 +2577,158 @@ self.__RSC_MANIFEST={
       "name": "default",
       "chunks": [
         "app-client-internals:static/chunks/app-client-internals.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Icon.tsx": {
+      "id": "(app-client)/./components/Icon.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Icon.tsx#": {
+      "id": "(app-client)/./components/Icon.tsx",
+      "name": "",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Icon.tsx#Icon": {
+      "id": "(app-client)/./components/Icon.tsx",
+      "name": "Icon",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Icon.tsx#default": {
+      "id": "(app-client)/./components/Icon.tsx",
+      "name": "default",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Main.tsx": {
+      "id": "(app-client)/./components/Main.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Main.tsx#": {
+      "id": "(app-client)/./components/Main.tsx",
+      "name": "",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Main.tsx#Main": {
+      "id": "(app-client)/./components/Main.tsx",
+      "name": "Main",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Sidebar.tsx": {
+      "id": "(app-client)/./components/Sidebar.tsx",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Sidebar.tsx#": {
+      "id": "(app-client)/./components/Sidebar.tsx",
+      "name": "",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Sidebar.tsx#default": {
+      "id": "(app-client)/./components/Sidebar.tsx",
+      "name": "default",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/esm/client/link.js": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "*",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/client/link.js#": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/esm/client/link.js#": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/client/link.js#default": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "default",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/esm/client/link.js#default": {
+      "id": "(app-client)/./node_modules/next/dist/client/link.js",
+      "name": "default",
+      "chunks": [
+        "app/layout:static/chunks/app/layout.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx": {
+      "id": "(app-client)/./app/learn/page.tsx",
+      "name": "*",
+      "chunks": [
+        "app/learn/page:static/chunks/app/learn/page.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx#": {
+      "id": "(app-client)/./app/learn/page.tsx",
+      "name": "",
+      "chunks": [
+        "app/learn/page:static/chunks/app/learn/page.js"
+      ],
+      "async": false
+    },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx#default": {
+      "id": "(app-client)/./app/learn/page.tsx",
+      "name": "default",
+      "chunks": [
+        "app/learn/page:static/chunks/app/learn/page.js"
       ],
       "async": false
     }

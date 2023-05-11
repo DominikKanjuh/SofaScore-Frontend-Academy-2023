@@ -1,8 +1,8 @@
-// File: /Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/src/app/page.tsx
-import * as entry from '../../../src/app/page.js'
+// File: /Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/page.tsx
+import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../src/app/page.js')
+type TEntry = typeof import('../../../app/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
