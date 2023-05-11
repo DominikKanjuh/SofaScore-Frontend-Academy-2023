@@ -853,36 +853,14 @@ self.__RSC_MANIFEST={
         ],
         "async": false
       }
-    },
-    "(app-client)/./app/learn/page.tsx": {
-      "*": {
-        "id": "(sc_client)/./app/learn/page.tsx",
-        "name": "*",
-        "chunks": [
-          "app/learn/page:static/chunks/app/learn/page.js"
-        ],
-        "async": false
-      },
-      "": {
-        "id": "(sc_client)/./app/learn/page.tsx",
-        "name": "",
-        "chunks": [
-          "app/learn/page:static/chunks/app/learn/page.js"
-        ],
-        "async": false
-      },
-      "default": {
-        "id": "(sc_client)/./app/learn/page.tsx",
-        "name": "default",
-        "chunks": [
-          "app/learn/page:static/chunks/app/learn/page.js"
-        ],
-        "async": false
-      }
     }
   },
   "edgeSSRModuleMapping": {},
-  "cssFiles": {},
+  "cssFiles": {
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/layout": [
+      "static/css/app/layout.css"
+    ]
+  },
   "clientModules": {
     "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/node_modules/next/dist/client/components/app-router.js": {
       "id": "(app-client)/./node_modules/next/dist/client/components/app-router.js",
@@ -2580,6 +2558,13 @@ self.__RSC_MANIFEST={
       ],
       "async": false
     },
+    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/public/styles/globals.css#": {
+      "id": "null",
+      "name": "default",
+      "chunks": [
+        "static/css/app/layout.css"
+      ]
+    },
     "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/components/Icon.tsx": {
       "id": "(app-client)/./components/Icon.tsx",
       "name": "*",
@@ -2705,30 +2690,6 @@ self.__RSC_MANIFEST={
       "name": "default",
       "chunks": [
         "app/layout:static/chunks/app/layout.js"
-      ],
-      "async": false
-    },
-    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx": {
-      "id": "(app-client)/./app/learn/page.tsx",
-      "name": "*",
-      "chunks": [
-        "app/learn/page:static/chunks/app/learn/page.js"
-      ],
-      "async": false
-    },
-    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx#": {
-      "id": "(app-client)/./app/learn/page.tsx",
-      "name": "",
-      "chunks": [
-        "app/learn/page:static/chunks/app/learn/page.js"
-      ],
-      "async": false
-    },
-    "/Users/dominikkanjuh/Desktop/Git/SofaScore-Frontend-Academy-2023/HW-06/quiz-app/app/learn/page.tsx#default": {
-      "id": "(app-client)/./app/learn/page.tsx",
-      "name": "default",
-      "chunks": [
-        "app/learn/page:static/chunks/app/learn/page.js"
       ],
       "async": false
     }

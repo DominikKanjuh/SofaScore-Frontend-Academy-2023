@@ -40,12 +40,11 @@ const SidebarUl = styled.ul`
   width: 10%;
   height: 100%;
   background-color: grey;
+  border-right: 2px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: auto;
-  border-right: 2px solid black;
 `;
 
 function Sidebar() {

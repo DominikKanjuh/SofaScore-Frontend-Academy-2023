@@ -1,6 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import { Main } from "../components/Main";
-import { Body } from "../components/Body";
+import "../public/styles/globals.css";
 
 export const metadata = {
   icons: {
@@ -18,18 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        style={{
-          height: "100vh",
-          width: "100vw",
-          padding: "0px",
-          margin: "0px",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <body>
         <Sidebar />
         <Main>{children}</Main>
       </body>
