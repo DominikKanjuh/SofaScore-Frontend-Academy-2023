@@ -10,10 +10,10 @@ const QuizIntroContainer = styled.div`
 `;
 
 type QuizIntroProps = {
-  onStartQuiz: () => void;
+  startQuiz: () => void;
 };
 
-const QuizIntro: React.FC<QuizIntroProps> = ({ onStartQuiz }) => {
+const QuizIntro: React.FC<QuizIntroProps> = ({ startQuiz }) => {
   return (
     <QuizIntroContainer>
       <p>This quiz consists of 15 questions.</p>
@@ -24,7 +24,7 @@ const QuizIntro: React.FC<QuizIntroProps> = ({ onStartQuiz }) => {
       <br></br>
       <p>When you are ready, press "Start".</p>
       <br></br>
-      <Button onClick={onStartQuiz}>Start</Button>
+      <Button onClick={startQuiz}>Start</Button>
     </QuizIntroContainer>
   );
 };
