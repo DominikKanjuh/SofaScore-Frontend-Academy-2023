@@ -1,8 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
+import Layout from "./components/Layout";
 
-function App() {
-  return <div>PRvi commit</div>;
-}
+const App: React.FC = () => {
+  return (
+    <Layout>
+      <h1>Quiz App</h1>
+    </Layout>
+  );
+};
 
 export default App;
