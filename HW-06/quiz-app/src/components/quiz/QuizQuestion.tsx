@@ -30,7 +30,6 @@ const QuizQuestionAnswers = styled.ul`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -39,11 +38,22 @@ const QuizQuestionAnswers = styled.ul`
 const QuizQuestionAnswersAndButton = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
   width: 40%;
   height: 100%;
   padding: 0;
+  margin: 0;
+`;
+
+const QuizQuestionAnswer = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding-bottom: 1rem;
   margin: 0;
 `;
 
@@ -51,46 +61,63 @@ interface QuizQuestionProps {
   question: string;
   answers: string[];
   nextQuestion: () => void;
+  isLoading: boolean;
 }
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
   question,
   answers,
   nextQuestion,
+  isLoading,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
 
   const handleAnswerSelect = (answer: string) => {
+    if (selectedAnswer === answer) {
+      setSelectedAnswer("");
+      setIsAnswerSelected(false);
+      return;
+    }
+
     setSelectedAnswer(answer);
     setIsAnswerSelected(true);
   };
 
   return (
-    <QuizQuestionContainer>
-      <QuizQuestionText>{question}</QuizQuestionText>
-      <QuizQuestionAnswersAndButton>
-        <QuizQuestionAnswers>
-          {answers.map((answer, index) => (
-            <li key={index}>
-              <button
-                onClick={() => handleAnswerSelect(answer)}
-                style={{
-                  backgroundColor:
-                    isAnswerSelected && selectedAnswer === answer
-                      ? "pink"
-                      : "palevioletred",
-                }}
-                disabled={isAnswerSelected}
-              >
-                {answer}
-              </button>
-            </li>
-          ))}
-        </QuizQuestionAnswers>
-        <Button onClick={nextQuestion}>Check Answer</Button>
-      </QuizQuestionAnswersAndButton>
-    </QuizQuestionContainer>
+    <>
+      {isLoading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <QuizQuestionContainer>
+          <QuizQuestionText>{question}</QuizQuestionText>
+          <QuizQuestionAnswersAndButton>
+            <QuizQuestionAnswers>
+              {answers.map((answer, index) => (
+                <QuizQuestionAnswer key={index}>
+                  <Button
+                    onClick={() => handleAnswerSelect(answer)}
+                    isSelected={selectedAnswer === answer}
+                  >
+                    {answer}
+                  </Button>
+                </QuizQuestionAnswer>
+              ))}
+            </QuizQuestionAnswers>
+            <Button
+              onClick={() => {
+                setIsAnswerSelected(false);
+                setSelectedAnswer("");
+                nextQuestion();
+              }}
+              isDisabled={!isAnswerSelected}
+            >
+              Check Answer
+            </Button>
+          </QuizQuestionAnswersAndButton>
+        </QuizQuestionContainer>
+      )}
+    </>
   );
 };
 

@@ -12,13 +12,24 @@ interface QuestionDetails {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
+  difficulty: string;
 }
 
 const Quiz = () => {
   const [startQuiz, setStartQuiz] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+
+  const generateURL = (difficulty: string) =>
+    `https://opentdb.com/api.php?amount=1&category=9&difficulty=${difficulty}&type=multiple`;
 
   const { data, error, isLoading, mutate } = useSWR<QuestionDetailsResponse>(
-    `https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple`
+    currentQuestion <= 5
+      ? generateURL("easy")
+      : currentQuestion <= 10
+      ? generateURL("medium")
+      : currentQuestion <= 15
+      ? generateURL("hard")
+      : null
   );
 
   const shuffleAnswers = (
@@ -41,7 +52,10 @@ const Quiz = () => {
   };
 
   const getNextQuestion = async () => {
-    mutate();
+    await mutate();
+    setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+    console.log(currentQuestion);
+    console.log(data?.results[0].difficulty);
   };
 
   if (!startQuiz) {
@@ -49,7 +63,7 @@ const Quiz = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <h1>Loading...</h1>;
   }
 
   if (error) {
@@ -64,6 +78,7 @@ const Quiz = () => {
       question={question}
       answers={allAnswers}
       nextQuestion={getNextQuestion}
+      isLoading={isLoading}
     />
   );
 };

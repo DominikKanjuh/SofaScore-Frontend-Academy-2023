@@ -22,9 +22,9 @@ const QuizIntro: React.FC<QuizIntroProps> = ({ startQuiz }) => {
       <br></br>
       <p>The quiz is general knowledge.</p>
       <br></br>
-      <p>When you are ready, press "Start".</p>
+      <p>When you are ready, press "Start quiz".</p>
       <br></br>
-      <Button onClick={startQuiz}>Start</Button>
+      <Button onClick={startQuiz}>Start quiz</Button>
     </QuizIntroContainer>
   );
 };
