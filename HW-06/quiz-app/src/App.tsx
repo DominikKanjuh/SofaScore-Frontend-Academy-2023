@@ -1,18 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import QuizPage from "./QuizPage";
-import LearnPage from "./LearnPage";
-import LeaderboardPage from "./LeaderboardPage";
+import Home from "./pages/Home";
+import Quiz from "./pages/Quiz";
+import Learn from "./pages/Learn";
+import Leaderboard from "./pages/Leaderboard";
 
 const App: React.FC = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/learn" element={<LearnPage />} />
-        <Route path="/leaderboard" element={<LeaderboardPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </>
   );

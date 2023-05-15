@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import styled from "styled-components";
+import Main from "./Main";
 
 const LayoutDiv = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <LayoutDiv>
       <Sidebar />
-      {children}
+      <Main> {children}</Main>
     </LayoutDiv>
   );
 };
