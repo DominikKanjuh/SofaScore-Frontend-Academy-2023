@@ -36,8 +36,14 @@ const Leaderboard = () => {
     const leaderboardData = localStorage.getItem("leaderboard");
     const sortedLeaderboard = leaderboardData
       ? JSON.parse(leaderboardData).sort(
-          (a: PlayerOnTheLeaderboard, b: PlayerOnTheLeaderboard) =>
-            b.score - a.score
+          (a: PlayerOnTheLeaderboard, b: PlayerOnTheLeaderboard) => {
+            if (b.score === a.score) {
+              // Sort alphabetically if scores are the same
+              return a.name.localeCompare(b.name);
+            }
+            // Sort by score in descending order
+            return b.score - a.score;
+          }
         )
       : [];
     setLeaderboard(sortedLeaderboard);
