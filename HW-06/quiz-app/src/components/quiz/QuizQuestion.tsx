@@ -104,7 +104,8 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [final, setFinal] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopupLose, setShowPopupLose] = useState(false);
+  const [showPopupWin, setShowPopupWin] = useState(false);
 
   const handleAnswerSelect = (answer: string) => {
     if (selectedAnswer === answer) {
@@ -119,15 +120,19 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   const checkAnswer = () => {
     setFinal(true);
 
+    if (questionNumber === 15 && selectedAnswer === correctAnswer) {
+      setShowPopupWin(true);
+    }
+
     if (selectedAnswer !== correctAnswer) {
-      setShowPopup(true);
+      setShowPopupLose(true);
     } else {
       setTimeout(() => {
         setFinal(false);
         nextQuestion();
         setIsAnswerSelected(false);
         setSelectedAnswer("");
-        setShowPopup(false);
+        setShowPopupLose(false);
       }, 3000);
     }
   };
@@ -139,7 +144,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   };
 
   const playAgain = () => {
-    setShowPopup(false);
+    setShowPopupLose(false);
     navigate("/quiz");
     setFinal(false);
     nextQuestion();
@@ -150,13 +155,24 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 
   return (
     <>
-      {showPopup && (
+      {showPopupLose && (
         <Popup
+          winner={false}
           playAgain={playAgain}
           learnMore={learnMore}
           score={questionNumber - 1}
         />
       )}
+
+      {showPopupWin && (
+        <Popup
+          winner={true}
+          playAgain={playAgain}
+          learnMore={learnMore}
+          score={15}
+        />
+      )}
+
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (

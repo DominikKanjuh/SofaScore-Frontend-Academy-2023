@@ -68,12 +68,18 @@ const PopupButton = styled.button<{ isDisabled?: boolean }>`
 `;
 
 interface PopupProps {
+  winner: boolean;
   playAgain: () => void;
   learnMore: () => void;
   score: number;
 }
 
-const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
+const Popup: React.FC<PopupProps> = ({
+  winner,
+  playAgain,
+  learnMore,
+  score,
+}) => {
   const [playerName, setPlayerName] = useState("");
   const [addedToLeaderboard, setAddedToLeaderboard] = useState(false);
 
@@ -95,10 +101,18 @@ const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
   return (
     <PopupContainer>
       <PopupContent>
-        <PopupText>
-          Sorry, you lost! You can add your score to the leaderboard if you
-          want...
-        </PopupText>
+        {winner ? (
+          <PopupText>
+            Sorry, you lost! You can add your score to the leaderboard if you
+            want...
+          </PopupText>
+        ) : (
+          <PopupText>
+            Congratulations, you won! You can add your score to the leaderboard
+            if you want ...
+          </PopupText>
+        )}
+
         <PopupText>Your score: {score}</PopupText>
         <ScoreInput
           type="text"
