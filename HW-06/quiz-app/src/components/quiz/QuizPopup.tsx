@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const PopupContainer = styled.div`
   position: fixed;
@@ -29,7 +29,7 @@ const PopupText = styled.p`
 const ScoreInput = styled.input`
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
-  width: 100%;
+  width: 91%;
 `;
 
 const PopupButtonContainer = styled.div`
@@ -37,7 +37,7 @@ const PopupButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const PopupButton = styled.button`
+const PopupButton = styled.button<{ isDisabled?: boolean }>`
   background-color: pink;
   color: white;
   border: none;
@@ -46,12 +46,25 @@ const PopupButton = styled.button`
   margin: 0 0.5rem;
   cursor: pointer;
   font-size: 1rem;
-  width: 30%;
+  width: 29%;
 
   &:hover {
     background-color: white;
     color: pink;
   }
+
+  ${(props) =>
+    props.isDisabled &&
+    css`
+      background-color: grey;
+      color: white;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    `}
 `;
 
 interface PopupProps {
@@ -62,6 +75,7 @@ interface PopupProps {
 
 const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
   const [playerName, setPlayerName] = useState("");
+  const [addedToLeaderboard, setAddedToLeaderboard] = useState(false);
 
   const handleScoreInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -70,6 +84,7 @@ const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
   };
 
   const addScoreToLeaderboard = () => {
+    setAddedToLeaderboard(true);
     const leaderboardData = localStorage.getItem("leaderboard");
     const leaderboard = leaderboardData ? JSON.parse(leaderboardData) : [];
 
@@ -93,7 +108,12 @@ const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
         />
 
         <PopupButtonContainer>
-          <PopupButton onClick={addScoreToLeaderboard}>Add</PopupButton>
+          <PopupButton
+            onClick={addScoreToLeaderboard}
+            isDisabled={addedToLeaderboard}
+          >
+            Add
+          </PopupButton>
           <PopupButton onClick={learnMore}>Learn!</PopupButton>
           <PopupButton onClick={playAgain}>Play Again</PopupButton>
         </PopupButtonContainer>
