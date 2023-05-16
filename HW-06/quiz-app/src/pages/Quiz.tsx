@@ -54,8 +54,6 @@ const Quiz = () => {
   const getNextQuestion = async () => {
     await mutate();
     setCurrentQuestion((currentQuestion) => currentQuestion + 1);
-    console.log(currentQuestion);
-    console.log(data?.results[0].difficulty);
   };
 
   if (!startQuiz) {
@@ -77,6 +75,7 @@ const Quiz = () => {
     <QuizQuestion
       question={question}
       answers={allAnswers}
+      correctAnswer={correct_answer}
       nextQuestion={getNextQuestion}
       isLoading={isLoading}
     />

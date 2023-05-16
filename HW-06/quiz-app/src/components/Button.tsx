@@ -42,12 +42,40 @@ const ButtonElement = styled.button<ButtonProps>`
         color: white;
       }
     `}
+
+    ${(props) =>
+    props.isSelected &&
+    props.isCorrect &&
+    css`
+      background-color: green;
+      color: white;
+
+      &:hover {
+        background-color: green;
+        color: white;
+      }
+    `}
+
+
+  ${(props) =>
+    props.isSelected &&
+    !props.isCorrect &&
+    css`
+      background-color: red;
+      color: white;
+
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    `}
 `;
 
 type ButtonProps = {
   onClick: () => void;
   isSelected?: boolean;
   isDisabled?: boolean;
+  isCorrect?: boolean;
   children: React.ReactNode;
 };
 
@@ -56,12 +84,14 @@ const Button: React.FC<ButtonProps> = ({
   isSelected,
   children,
   isDisabled,
+  isCorrect,
 }) => {
   return (
     <ButtonElement
       onClick={onClick}
       isSelected={isSelected}
       isDisabled={isDisabled}
+      isCorrect={isCorrect}
     >
       {children}
     </ButtonElement>

@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "../Button";
+import styled, { css } from "styled-components";
 
 const QuizQuestionContainer = styled.div`
   display: flex;
@@ -60,6 +60,7 @@ const QuizQuestionAnswer = styled.li`
 interface QuizQuestionProps {
   question: string;
   answers: string[];
+  correctAnswer: string;
   nextQuestion: () => void;
   isLoading: boolean;
 }
@@ -67,6 +68,7 @@ interface QuizQuestionProps {
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
   question,
   answers,
+  correctAnswer,
   nextQuestion,
   isLoading,
 }) => {
@@ -79,9 +81,16 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
       setIsAnswerSelected(false);
       return;
     }
-
     setSelectedAnswer(answer);
     setIsAnswerSelected(true);
+  };
+
+  const checkAnswer = () => {
+    setTimeout(() => {
+      nextQuestion();
+      setIsAnswerSelected(false);
+      setSelectedAnswer("");
+    }, 3000);
   };
 
   return (
@@ -98,17 +107,17 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                   <Button
                     onClick={() => handleAnswerSelect(answer)}
                     isSelected={selectedAnswer === answer}
+                    isCorrect={correctAnswer === answer}
                   >
                     {answer}
                   </Button>
                 </QuizQuestionAnswer>
               ))}
             </QuizQuestionAnswers>
+
             <Button
               onClick={() => {
-                setIsAnswerSelected(false);
-                setSelectedAnswer("");
-                nextQuestion();
+                checkAnswer();
               }}
               isDisabled={!isAnswerSelected}
             >
