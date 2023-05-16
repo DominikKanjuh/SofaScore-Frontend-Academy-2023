@@ -150,7 +150,13 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 
   return (
     <>
-      {showPopup && <Popup playAgain={playAgain} learnMore={learnMore} />}
+      {showPopup && (
+        <Popup
+          playAgain={playAgain}
+          learnMore={learnMore}
+          score={questionNumber - 1}
+        />
+      )}
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (

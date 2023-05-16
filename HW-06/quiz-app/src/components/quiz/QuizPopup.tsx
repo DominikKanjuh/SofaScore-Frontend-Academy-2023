@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const PopupContainer = styled.div`
@@ -26,6 +26,12 @@ const PopupText = styled.p`
   margin-bottom: 2rem;
 `;
 
+const ScoreInput = styled.input`
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+`;
+
 const PopupButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -40,6 +46,7 @@ const PopupButton = styled.button`
   margin: 0 0.5rem;
   cursor: pointer;
   font-size: 1rem;
+  width: 30%;
 
   &:hover {
     background-color: white;
@@ -50,14 +57,43 @@ const PopupButton = styled.button`
 interface PopupProps {
   playAgain: () => void;
   learnMore: () => void;
+  score: number;
 }
 
-const Popup: React.FC<PopupProps> = ({ playAgain, learnMore }) => {
+const Popup: React.FC<PopupProps> = ({ playAgain, learnMore, score }) => {
+  const [playerName, setPlayerName] = useState("");
+
+  const handleScoreInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setPlayerName(event.target.value);
+  };
+
+  const addScoreToLeaderboard = () => {
+    const leaderboardData = localStorage.getItem("leaderboard");
+    const leaderboard = leaderboardData ? JSON.parse(leaderboardData) : [];
+
+    leaderboard.push({ name: playerName, score: score });
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+  };
+
   return (
     <PopupContainer>
       <PopupContent>
-        <PopupText>Sorry, you lost!</PopupText>
+        <PopupText>
+          Sorry, you lost! You can add your score to the leaderboard if you
+          want...
+        </PopupText>
+        <PopupText>Your score: {score}</PopupText>
+        <ScoreInput
+          type="text"
+          value={playerName}
+          onChange={handleScoreInputChange}
+          placeholder="Enter your name..."
+        />
+
         <PopupButtonContainer>
+          <PopupButton onClick={addScoreToLeaderboard}>Add</PopupButton>
           <PopupButton onClick={learnMore}>Learn!</PopupButton>
           <PopupButton onClick={playAgain}>Play Again</PopupButton>
         </PopupButtonContainer>
