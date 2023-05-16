@@ -74,6 +74,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
+  const [final, setFinal] = useState(false);
 
   const handleAnswerSelect = (answer: string) => {
     if (selectedAnswer === answer) {
@@ -86,7 +87,10 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   };
 
   const checkAnswer = () => {
+    setFinal(true);
+
     setTimeout(() => {
+      setFinal(false);
       nextQuestion();
       setIsAnswerSelected(false);
       setSelectedAnswer("");
@@ -108,6 +112,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
                     onClick={() => handleAnswerSelect(answer)}
                     isSelected={selectedAnswer === answer}
                     isCorrect={correctAnswer === answer}
+                    isFinal={final}
                   >
                     {answer}
                   </Button>

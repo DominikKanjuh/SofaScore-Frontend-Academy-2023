@@ -44,7 +44,7 @@ const ButtonElement = styled.button<ButtonProps>`
     `}
 
     ${(props) =>
-    props.isSelected &&
+    props.isFinal &&
     props.isCorrect &&
     css`
       background-color: green;
@@ -54,10 +54,11 @@ const ButtonElement = styled.button<ButtonProps>`
         background-color: green;
         color: white;
       }
-    `}
+    `} 
 
 
   ${(props) =>
+    props.isFinal &&
     props.isSelected &&
     !props.isCorrect &&
     css`
@@ -76,6 +77,7 @@ type ButtonProps = {
   isSelected?: boolean;
   isDisabled?: boolean;
   isCorrect?: boolean;
+  isFinal?: boolean;
   children: React.ReactNode;
 };
 
@@ -85,6 +87,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   isDisabled,
   isCorrect,
+  isFinal,
 }) => {
   return (
     <ButtonElement
@@ -92,6 +95,7 @@ const Button: React.FC<ButtonProps> = ({
       isSelected={isSelected}
       isDisabled={isDisabled}
       isCorrect={isCorrect}
+      isFinal={isFinal}
     >
       {children}
     </ButtonElement>
