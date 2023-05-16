@@ -1,6 +1,6 @@
-import Icon, { IconName } from "./Icon";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Icon, { IconName } from "./Icon";
 
 const SidebarLink = styled(Link)`
   text-decoration: none;
@@ -15,7 +15,7 @@ const SidebarButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: black;
+  color: white;
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
@@ -36,10 +36,12 @@ export const SidebarItem = ({
   href,
   icon,
   title,
+  showText,
 }: {
   href: string;
   icon: IconName;
   title: string;
+  showText?: boolean;
 }) => {
   return (
     <>
@@ -47,7 +49,7 @@ export const SidebarItem = ({
         <SidebarButton>
           <SidebarDiv>
             <Icon icon={icon} />
-            <p>{title}</p>
+            {showText && <p>{title}</p>}
           </SidebarDiv>
         </SidebarButton>
       </SidebarLink>
