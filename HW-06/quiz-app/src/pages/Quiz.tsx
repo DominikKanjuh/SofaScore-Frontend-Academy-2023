@@ -68,11 +68,14 @@ const Quiz = () => {
     return <div>Error loading question.</div>;
   }
 
-  const { question, correct_answer, incorrect_answers } = data!.results[0];
+  const { difficulty, question, correct_answer, incorrect_answers } =
+    data!.results[0];
   const allAnswers = shuffleAnswers(correct_answer, incorrect_answers);
 
   return (
     <QuizQuestion
+      difficulty={difficulty}
+      questionNumber={currentQuestion}
       question={question}
       answers={allAnswers}
       correctAnswer={correct_answer}

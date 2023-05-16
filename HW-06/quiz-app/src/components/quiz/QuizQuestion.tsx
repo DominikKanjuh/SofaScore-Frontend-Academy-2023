@@ -13,6 +13,26 @@ const QuizQuestionContainer = styled.div`
   height: 100%;
 `;
 
+const QuizQuestionTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+`;
+
+const QuizQuestionDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
+  height: 10%;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  margin: 0;
+`;
+
 const QuizQuestionText = styled.h1`
   font-size: 2rem;
   font-weight: 700;
@@ -20,8 +40,8 @@ const QuizQuestionText = styled.h1`
   justify-content: center;
   align-items: center;
   padding-left: 2rem;
-  width: 60%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
 `;
 
 const QuizQuestionAnswers = styled.ul`
@@ -44,6 +64,7 @@ const QuizQuestionAnswersAndButton = styled.div`
   width: 40%;
   height: 100%;
   padding: 0;
+
   margin: 0;
 `;
 
@@ -58,6 +79,8 @@ const QuizQuestionAnswer = styled.li`
 `;
 
 interface QuizQuestionProps {
+  difficulty: string;
+  questionNumber: number;
   question: string;
   answers: string[];
   correctAnswer: string;
@@ -66,6 +89,8 @@ interface QuizQuestionProps {
 }
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
+  difficulty,
+  questionNumber,
   question,
   answers,
   correctAnswer,
@@ -102,34 +127,42 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (
-        <QuizQuestionContainer>
-          <QuizQuestionText>{question}</QuizQuestionText>
-          <QuizQuestionAnswersAndButton>
-            <QuizQuestionAnswers>
-              {answers.map((answer, index) => (
-                <QuizQuestionAnswer key={index}>
-                  <Button
-                    onClick={() => handleAnswerSelect(answer)}
-                    isSelected={selectedAnswer === answer}
-                    isCorrect={correctAnswer === answer}
-                    isFinal={final}
-                  >
-                    {answer}
-                  </Button>
-                </QuizQuestionAnswer>
-              ))}
-            </QuizQuestionAnswers>
+        <>
+          <QuizQuestionContainer>
+            <QuizQuestionTextContainer>
+              <QuizQuestionDescription>
+                <p>Difficulty: {difficulty}</p>
+                <p>Question number {questionNumber}</p>
+              </QuizQuestionDescription>
+              <QuizQuestionText>{question}</QuizQuestionText>
+            </QuizQuestionTextContainer>
+            <QuizQuestionAnswersAndButton>
+              <QuizQuestionAnswers>
+                {answers.map((answer, index) => (
+                  <QuizQuestionAnswer key={index}>
+                    <Button
+                      onClick={() => handleAnswerSelect(answer)}
+                      isSelected={selectedAnswer === answer}
+                      isCorrect={correctAnswer === answer}
+                      isFinal={final}
+                    >
+                      {answer}
+                    </Button>
+                  </QuizQuestionAnswer>
+                ))}
+              </QuizQuestionAnswers>
 
-            <Button
-              onClick={() => {
-                checkAnswer();
-              }}
-              isDisabled={!isAnswerSelected}
-            >
-              Check Answer
-            </Button>
-          </QuizQuestionAnswersAndButton>
-        </QuizQuestionContainer>
+              <Button
+                onClick={() => {
+                  checkAnswer();
+                }}
+                isDisabled={!isAnswerSelected}
+              >
+                Check Answer
+              </Button>
+            </QuizQuestionAnswersAndButton>
+          </QuizQuestionContainer>
+        </>
       )}
     </>
   );
