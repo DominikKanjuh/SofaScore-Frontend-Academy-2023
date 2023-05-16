@@ -3,6 +3,7 @@ import Button from "../Button";
 import styled, { css } from "styled-components";
 import { CategoryType } from "../../pages/Learn";
 import { categories } from "../../pages/Learn";
+import { difficulties } from "../../pages/Learn";
 
 const LearnIntroContainer = styled.div`
   display: flex;
@@ -89,6 +90,11 @@ const LearnIntro: React.FC<LearnIntroProps> = ({
   const handleCategoryClick = (category: CategoryType) => {
     setCategoryType(category);
   };
+
+  const handleDifficultyClick = (difficulty: string) => {
+    setDifficultyType(difficulty);
+  };
+
   if (choosingCategory) {
     return (
       <LearnIntroContainer>
@@ -131,7 +137,34 @@ const LearnIntro: React.FC<LearnIntroProps> = ({
     );
   }
   if (choosingDifficulty) {
-    return <div>DIFF</div>;
+    return (
+      <LearnIntroContainer>
+        <p>Choose the difficulty for category: {categoryType}</p>
+        <br />
+        <CategoryButtonContainer>
+          <Column>
+            {difficulties.map((difficulty) => (
+              <CategoryButton
+                key={difficulty}
+                onClick={() => handleDifficultyClick(difficulty)}
+                isSelected={difficultyType === difficulty}
+              >
+                {difficulty}
+              </CategoryButton>
+            ))}
+          </Column>
+        </CategoryButtonContainer>
+        <br />
+        <Button
+          onClick={() => {
+            setChoosingDifficulty(false);
+            startLearning();
+          }}
+        >
+          Choose the difficulty
+        </Button>
+      </LearnIntroContainer>
+    );
   }
 
   return <div>Idu pitanja</div>;

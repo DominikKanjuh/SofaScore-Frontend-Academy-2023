@@ -44,6 +44,8 @@ export const categories = {
 
 export type CategoryType = keyof typeof categories;
 
+export const difficulties = ["easy", "medium", "hard"];
+
 const Learn = () => {
   const [startLearning, setStartLearning] = useState(false);
   const [categoryType, setCategoryType] =
@@ -80,6 +82,8 @@ const Learn = () => {
   const getNextQuestion = async () => {
     await mutate();
     setCurrentQuestion((currentQuestion) => currentQuestion + 1);
+    console.log(categoryType);
+    console.log(difficultyType);
   };
 
   const resetQuiz = () => {
