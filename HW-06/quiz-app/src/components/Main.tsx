@@ -9,6 +9,7 @@ const MainContainer = styled.div`
   justify-content: space-around;
   width: 90%;
   height: 100%;
+  overflow: auto;
 `;
 
 interface MainProps {

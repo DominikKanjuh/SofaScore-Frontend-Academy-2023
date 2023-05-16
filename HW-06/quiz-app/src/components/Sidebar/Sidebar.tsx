@@ -6,7 +6,7 @@ const SidebarUl = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  width: fit-content;
+  width: 5%;
   height: 100%;
   background-color: pink;
   display: flex;
@@ -14,6 +14,13 @@ const SidebarUl = styled.ul`
   align-items: center;
   justify-content: center;
   transition: width 0.3s ease;
+
+  &:hover {
+    & > a > button > div {
+      justify-content: left;
+    }
+    width: 20%;
+  }
 `;
 
 const Sidebar = () => {

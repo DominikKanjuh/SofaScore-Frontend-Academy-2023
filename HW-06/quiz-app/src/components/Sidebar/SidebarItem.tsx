@@ -16,6 +16,7 @@ const SidebarButton = styled.button`
   align-items: center;
   justify-content: space-between;
   color: white;
+  font-size: 1.5rem;
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
@@ -28,6 +29,7 @@ const SidebarDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   width: 100%;
 `;
