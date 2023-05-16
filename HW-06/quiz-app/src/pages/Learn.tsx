@@ -54,11 +54,16 @@ const Learn = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
 
   const generateURL = (difficulty: string, category: CategoryType) =>
-    `https://opentdb.com/api.php?amount=1&category=9&difficulty=${difficulty}&type=multiple`;
+    `https://opentdb.com/api.php?amount=1&category=9&difficulty=${difficulty}&type=multiple&encode=base64`;
 
   const { data, error, isLoading, mutate } = useSWR<QuestionDetailsResponse>(
     generateURL(difficultyType, categoryType)
   );
+
+  const decodeBase64 = (data: string) => {
+    const decodedString = window.atob(data);
+    return decodedString;
+  };
 
   const shuffleAnswers = (
     correctAnswer: string,
@@ -113,7 +118,15 @@ const Learn = () => {
 
   const { difficulty, question, correct_answer, incorrect_answers } =
     data!.results[0];
-  const allAnswers = shuffleAnswers(correct_answer, incorrect_answers);
+  const decodedQuestion = decodeBase64(question);
+  const decodedCorrectAnswer = decodeBase64(correct_answer);
+  const decodedIncorrectAnswers = incorrect_answers.map((answer) =>
+    decodeBase64(answer)
+  );
+  const allAnswers = shuffleAnswers(
+    decodedCorrectAnswer,
+    decodedIncorrectAnswers
+  );
 
   return (
     <QuizQuestion
@@ -121,9 +134,9 @@ const Learn = () => {
       category={categoryType}
       difficulty={difficultyType}
       questionNumber={currentQuestion}
-      question={question}
+      question={decodedQuestion}
       answers={allAnswers}
-      correctAnswer={correct_answer}
+      correctAnswer={decodedCorrectAnswer}
       nextQuestion={getNextQuestion}
       isLoading={isLoading}
       resetQuiz={resetQuiz}
