@@ -4,6 +4,7 @@ import Button from "../Button";
 import styled, { css } from "styled-components";
 import Popup from "./QuizPopup";
 import { useNavigate } from "react-router-dom";
+import { CategoryType } from "../../pages/Learn";
 
 const QuizQuestionContainer = styled.div`
   display: flex;
@@ -81,6 +82,8 @@ const QuizQuestionAnswer = styled.li`
 `;
 
 interface QuizQuestionProps {
+  forLearning?: boolean;
+  category?: CategoryType;
   difficulty: string;
   questionNumber: number;
   question: string;
@@ -92,6 +95,8 @@ interface QuizQuestionProps {
 }
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
+  forLearning,
+  category,
   difficulty,
   questionNumber,
   question,
@@ -120,12 +125,21 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   const checkAnswer = () => {
     setFinal(true);
 
-    if (questionNumber === 15 && selectedAnswer === correctAnswer) {
-      setShowPopupWin(true);
-    }
-
-    if (selectedAnswer !== correctAnswer) {
-      setShowPopupLose(true);
+    if (!forLearning) {
+      if (questionNumber === 15 && selectedAnswer === correctAnswer) {
+        setShowPopupWin(true);
+      }
+      if (selectedAnswer !== correctAnswer) {
+        setShowPopupLose(true);
+      } else {
+        setTimeout(() => {
+          setFinal(false);
+          nextQuestion();
+          setIsAnswerSelected(false);
+          setSelectedAnswer("");
+          setShowPopupLose(false);
+        }, 3000);
+      }
     } else {
       setTimeout(() => {
         setFinal(false);
@@ -180,8 +194,9 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
           <QuizQuestionContainer>
             <QuizQuestionTextContainer>
               <QuizQuestionDescription>
+                {category && <p>Category: {category}</p>}
                 <p>Difficulty: {difficulty}</p>
-                <p>Question number {questionNumber}</p>
+                <p>Question number: {questionNumber}</p>
               </QuizQuestionDescription>
               <QuizQuestionText>{question}</QuizQuestionText>
             </QuizQuestionTextContainer>

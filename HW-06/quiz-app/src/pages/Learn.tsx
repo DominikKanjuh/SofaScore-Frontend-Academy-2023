@@ -117,7 +117,9 @@ const Learn = () => {
 
   return (
     <QuizQuestion
-      difficulty={difficulty}
+      forLearning={true}
+      category={categoryType}
+      difficulty={difficultyType}
       questionNumber={currentQuestion}
       question={question}
       answers={allAnswers}
