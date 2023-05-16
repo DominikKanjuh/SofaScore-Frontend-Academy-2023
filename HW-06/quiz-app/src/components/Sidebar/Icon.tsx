@@ -3,6 +3,11 @@ import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineQuiz } from "react-icons/md";
 import { BiBrain } from "react-icons/bi";
 import { MdOutlineLeaderboard } from "react-icons/md";
+import styled from "styled-components";
+
+const IconDiv = styled.div`
+  vertical-align: middle;
+`;
 
 const icons = {
   home: <AiOutlineHome />,
@@ -18,7 +23,7 @@ interface IconProps {
 }
 
 const Icon: React.FC<IconProps> = ({ icon }) => {
-  return <>{icons[icon]}</>;
+  return <IconDiv>{icons[icon]}</IconDiv>;
 };
 
 export default Icon;
