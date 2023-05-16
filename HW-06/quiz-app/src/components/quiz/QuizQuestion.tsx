@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Button from "../Button";
 import styled, { css } from "styled-components";
+import Popup from "./QuizPopup";
+import { useNavigate } from "react-router-dom";
 
 const QuizQuestionContainer = styled.div`
   display: flex;
@@ -86,6 +88,7 @@ interface QuizQuestionProps {
   correctAnswer: string;
   nextQuestion: () => void;
   isLoading: boolean;
+  resetQuiz?: () => void;
 }
 
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
@@ -96,10 +99,12 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   correctAnswer,
   nextQuestion,
   isLoading,
+  resetQuiz,
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [isAnswerSelected, setIsAnswerSelected] = useState(false);
   const [final, setFinal] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAnswerSelect = (answer: string) => {
     if (selectedAnswer === answer) {
@@ -114,16 +119,38 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
   const checkAnswer = () => {
     setFinal(true);
 
-    setTimeout(() => {
-      setFinal(false);
-      nextQuestion();
-      setIsAnswerSelected(false);
-      setSelectedAnswer("");
-    }, 3000);
+    if (selectedAnswer !== correctAnswer) {
+      setShowPopup(true);
+    } else {
+      setTimeout(() => {
+        setFinal(false);
+        nextQuestion();
+        setIsAnswerSelected(false);
+        setSelectedAnswer("");
+        setShowPopup(false);
+      }, 3000);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const learnMore = () => {
+    navigate("/learn");
+  };
+
+  const playAgain = () => {
+    setShowPopup(false);
+    navigate("/quiz");
+    setFinal(false);
+    nextQuestion();
+    setIsAnswerSelected(false);
+    setSelectedAnswer("");
+    resetQuiz && resetQuiz();
   };
 
   return (
     <>
+      {showPopup && <Popup playAgain={playAgain} learnMore={learnMore} />}
       {isLoading ? (
         <h1>Loading...</h1>
       ) : (

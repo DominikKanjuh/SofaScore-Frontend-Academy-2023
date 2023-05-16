@@ -56,6 +56,11 @@ const Quiz = () => {
     setCurrentQuestion((currentQuestion) => currentQuestion + 1);
   };
 
+  const resetQuiz = () => {
+    setStartQuiz(false);
+    setCurrentQuestion(0);
+  };
+
   if (!startQuiz) {
     return <QuizIntro startQuiz={() => setStartQuiz(true)} />;
   }
@@ -81,6 +86,7 @@ const Quiz = () => {
       correctAnswer={correct_answer}
       nextQuestion={getNextQuestion}
       isLoading={isLoading}
+      resetQuiz={resetQuiz}
     />
   );
 };
