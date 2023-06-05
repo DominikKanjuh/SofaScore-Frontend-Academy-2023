@@ -20,10 +20,14 @@ const StyledIcon = styled.img<IconProps>`
   -webkit-mask-image: ${({ icon }) => `url('${icons[icon]}')`};
   mask-image: ${({ icon }) => `url('${icons[icon]}')`};
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  -webkit-mask-position: center center;
   mask-repeat: no-repeat;
-  background-color: ${({ color }) => color};
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  //if there is color prop then use it, otherwise use theme color
+  background-color: ${(props) => props.color || props.theme.color.surface.s1};
 `;
 
 export const Icon: React.FC<IconProps> = ({ icon, height, width, color }) => {

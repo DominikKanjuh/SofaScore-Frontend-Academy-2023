@@ -17,9 +17,9 @@ export const light = {
       secondary: "rgba(255, 255, 255, 0.6)",
     },
     surface: {
-      0: "#eff3f8",
-      1: "#ffffff",
-      2: "rgba(192, 207, 228, 0.2)",
+      s0: "#eff3f8",
+      s1: "#ffffff",
+      s2: "rgba(192, 207, 228, 0.2)",
     },
     onSurface: {
       lv1: "#121212",
@@ -38,8 +38,8 @@ export const light = {
   },
   layer: {
     elevation: {
-      1: "#ffffff",
-      2: "#ffffff",
+      e1: "#ffffff",
+      e2: "#ffffff",
     },
   },
 };
@@ -61,9 +61,9 @@ export const dark = {
       secondary: "rgba(255, 255, 255, 0.6)",
     },
     surface: {
-      0: "#101114",
-      1: "#21242d",
-      2: "rgba(0, 0, 0, 0.4)",
+      s0: "#101114",
+      s1: "#21242d",
+      s2: "rgba(0, 0, 0, 0.4)",
     },
     onSurface: {
       lv1: "#ffffff",
@@ -82,8 +82,8 @@ export const dark = {
   },
   layer: {
     elevation: {
-      1: "#2b2e38",
-      2: "#2b2e38",
+      e1: "#2b2e38",
+      e2: "#2b2e38",
     },
   },
 };

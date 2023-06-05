@@ -8,6 +8,7 @@ const StyledHeader = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
+  background-color: ${(props) => props.theme.color.primary.default};
 `;
 
 const FirstRow = styled.div`
@@ -31,11 +32,11 @@ const Header = () => {
     <StyledHeader>
       <FirstRow>
         <HiddenIcon>
-          <Icon icon="settings" color="black" />
+          <Icon icon="settings" />
         </HiddenIcon>
-        <Icon icon="sofascore" color="black" width={132} />
+        <Icon icon="sofascore" width={132} />
         <PaddingOnSettings>
-          <Icon icon="settings" color="black" />
+          <Icon icon="settings" />
         </PaddingOnSettings>
       </FirstRow>
     </StyledHeader>
