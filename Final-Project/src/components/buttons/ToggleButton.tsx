@@ -6,7 +6,7 @@ const ToggleHelper = styled.div`
   width: 48px;
   height: 24px;
   border-radius: 24px;
-  background-color: #00000040;
+  background-color: ${(props) => props.theme.color.primary.variant};
   cursor: pointer;
   transition-duration: 300ms;
 
@@ -17,17 +17,29 @@ const ToggleHelper = styled.div`
     position: absolute;
     left: 2px;
     top: 2px;
-    background-color: #ffffff;
+    background-color: ${(props) => props.theme.color.surface.s1};
     transition-duration: 300ms;
   }
 
   &.on > div {
-    background-color: #0011ff;
     left: 26px;
   }
-  &.on {
-    background-color: #ffffff;
-  }
+`;
+
+const ThemeToggleDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 64px;
+  background-color: ${(props) => props.theme.color.primary.default};
+`;
+
+const ThemeToggleP = styled.p`
+  color: ${(props) => props.theme.color.surface.s1};
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 24px;
 `;
 
 const ToggleButton = ({
@@ -39,8 +51,8 @@ const ToggleButton = ({
 }) => {
   const [isToggled, setIsToggled] = useState(value);
   return (
-    <>
-      <p>Promijeni temu:</p>
+    <ThemeToggleDiv>
+      <ThemeToggleP>Theme</ThemeToggleP>
       <ToggleHelper
         onClick={() => {
           setIsToggled((isToggled) => !isToggled);
@@ -50,7 +62,7 @@ const ToggleButton = ({
       >
         <div></div>
       </ToggleHelper>
-    </>
+    </ThemeToggleDiv>
   );
 };
 
