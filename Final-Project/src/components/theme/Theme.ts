@@ -1,5 +1,3 @@
-export type ThemeType = typeof light;
-
 export const light = {
   color: {
     primary: {
@@ -44,7 +42,7 @@ export const light = {
   },
 };
 
-export const dark = {
+export const dark: typeof light = {
   color: {
     primary: {
       default: "#849afd",
@@ -88,5 +86,4 @@ export const dark = {
   },
 };
 
-const theme: ThemeType = light;
-export default theme;
+export type ThemeType = typeof light;

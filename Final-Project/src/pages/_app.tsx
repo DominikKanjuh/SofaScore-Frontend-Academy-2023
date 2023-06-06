@@ -1,17 +1,13 @@
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "styled-components";
-import theme from "@/components/theme/Theme";
+import { ThemeContext } from "styled-components";
 import { useState } from "react";
+import { createContext } from "react";
 import { GlobalStyles } from "@/components/styles/GlobalStyle";
 import Layout from "@/components/layout/Layout";
 import Head from "next/head";
+import Theme from "@/contexts/ThemeContext";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [currentTheme, setCurrentTheme] = useState(theme);
-  // const updateTheme = () => {
-  //   setCurrentTheme(currentTheme === theme ? secondaryTheme : theme);
-  // };
-
   return (
     <>
       <Head>
@@ -23,12 +19,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ThemeProvider theme={theme}>
+      <Theme>
         <GlobalStyles /> {/* GlobalStyles are applied to the whole app */}
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </ThemeProvider>
+      </Theme>
     </>
   );
 }
