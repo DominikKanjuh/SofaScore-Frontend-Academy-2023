@@ -42,7 +42,7 @@ const ThemeToggleP = styled.p`
   margin-left: 24px;
 `;
 
-const ToggleButton = ({
+const ThemeToggle = ({
   value,
   onChange,
 }: {
@@ -66,4 +66,4 @@ const ToggleButton = ({
   );
 };
 
-export default ToggleButton;
+export default ThemeToggle;

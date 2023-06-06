@@ -4,13 +4,15 @@ import styled from "styled-components";
 import ThemeContext, { useTheming } from "@/contexts/ThemeContext";
 import ToggleButton from "../buttons/ToggleButton";
 import { dark, light } from "@/components/theme/Theme";
+import { Tab } from "../tabs/Tab";
+import ThemeToggle from "../buttons/ToggleButton";
 
 const StyledHeader = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 64px;
   background-color: ${(props) => props.theme.color.primary.default};
 `;
 
@@ -19,7 +21,8 @@ const FirstRow = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 100%;
+  height: 64px;
+  padding: 22px 0 22px 0;
 `;
 
 const HiddenIcon = styled.div`
@@ -27,6 +30,7 @@ const HiddenIcon = styled.div`
 `;
 
 const PaddingOnSettings = styled.div`
+  height: 24px;
   padding-right: 24px;
   position: relative;
 `;
@@ -42,7 +46,7 @@ const SettingsButton = styled.button`
 const Popup = styled.div<{ show: boolean }>`
   position: absolute;
   z-index: 1;
-  top: 160%;
+  top: 380%;
   right: 0;
   left: auto;
   width: 200px;
@@ -52,9 +56,18 @@ const Popup = styled.div<{ show: boolean }>`
   border-radius: 0 0 0 16px;
 `;
 
+const SecondRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  background-color: ${(props) => props.theme.color.primary.default};
+`;
+
 const Header = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { currentTheme, toggleTheme, setCurrentTheme } = useTheming();
+  const { setCurrentTheme } = useTheming();
   const togglePopup = () => {
     setIsSettingsOpen((isSettingsOpen) => !isSettingsOpen);
   };
@@ -71,7 +84,7 @@ const Header = () => {
             <Icon icon="settings" />
           </SettingsButton>
           <Popup show={isSettingsOpen}>
-            <ToggleButton
+            <ThemeToggle
               value={true}
               onChange={(e) => {
                 if (e) {
@@ -84,6 +97,11 @@ const Header = () => {
           </Popup>
         </PaddingOnSettings>
       </FirstRow>
+      <SecondRow>
+        <Tab sport="football" />
+        <Tab sport="basketball" />
+        <Tab sport="nfl" />
+      </SecondRow>
     </StyledHeader>
   );
 };
