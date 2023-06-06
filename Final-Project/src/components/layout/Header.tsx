@@ -54,7 +54,7 @@ const Popup = styled.div<{ show: boolean }>`
 
 const Header = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { toggleTheme, setTheme } = useTheming();
+  const { currentTheme, toggleTheme, setCurrentTheme } = useTheming();
   const togglePopup = () => {
     setIsSettingsOpen((isSettingsOpen) => !isSettingsOpen);
   };
@@ -75,9 +75,9 @@ const Header = () => {
               value={true}
               onChange={(e) => {
                 if (e) {
-                  setTheme(light);
+                  setCurrentTheme(light);
                 } else {
-                  setTheme(dark);
+                  setCurrentTheme(dark);
                 }
               }}
             />

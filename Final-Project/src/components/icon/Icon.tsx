@@ -4,6 +4,7 @@ import styled from "styled-components";
 const icons = {
   settings: "/assets/icons/settings.svg",
   sofascore: "/assets/icons/logo_sofascore.svg",
+  rights: "/assets/icons/rights.svg",
 };
 
 type IconName = keyof typeof icons;
