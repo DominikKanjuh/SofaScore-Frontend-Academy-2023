@@ -9,6 +9,7 @@ import ThemeToggle from "../buttons/ToggleButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { log } from "console";
+import { useMobile } from "./Layout";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -83,6 +84,8 @@ const Header = () => {
     route = "/" + route;
     setSelectedLabel(route);
   }, [router]);
+
+  const { isMobile } = useMobile();
 
   return (
     <StyledHeader>
