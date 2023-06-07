@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { dark, light, ThemeType } from "@/components/theme/Theme";
+import { log } from "console";
 
 interface ThemeContextProps {
   currentTheme: ThemeType;
@@ -16,9 +17,19 @@ const ThemeProviderWrapper = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(light);
 
   useEffect(() => {
-    // Load theme from local storage
+    const preferedTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? dark
+      : light;
     const storedTheme = localStorage.getItem("theme");
-    setCurrentTheme(storedTheme === "dark" ? dark : light);
+
+    setCurrentTheme(
+      preferedTheme || (storedTheme === "dark" ? dark : light) || light
+    );
+    localStorage.setItem(
+      "theme",
+      preferedTheme === dark ? "dark" : "light" || storedTheme || "light"
+    );
   }, []);
 
   const handleSetCurrentTheme = (theme: ThemeType) => {
