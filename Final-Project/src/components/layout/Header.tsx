@@ -116,20 +116,7 @@ const Header = () => {
             <Icon icon="settings" />
           </SettingsButton>
           <Popup show={isSettingsOpen}>
-            <ThemeToggle
-              // value={true}
-              onChange={(e) => {
-                if (e) {
-                  setCurrentTheme(light);
-                  typeof window !== "undefined" &&
-                    localStorage.setItem("theme", "light");
-                } else {
-                  setCurrentTheme(dark);
-                  typeof window !== "undefined" &&
-                    localStorage.setItem("theme", "dark");
-                }
-              }}
-            />
+            <ThemeToggle onChange={(e) => {}} />
           </Popup>
         </MobileButtonsRight>
       </FirstRowMobile>
@@ -148,16 +135,7 @@ const Header = () => {
             <Icon icon="settings" />
           </SettingsButton>
           <Popup show={isSettingsOpen}>
-            <ThemeToggle
-              // value={true}
-              onChange={(e) => {
-                if (e) {
-                  setCurrentTheme(light);
-                } else {
-                  setCurrentTheme(dark);
-                }
-              }}
-            />
+            <ThemeToggle onChange={(e) => {}} />
           </Popup>
         </PaddingOnSettingsWeb>
       </FirstRowWeb>

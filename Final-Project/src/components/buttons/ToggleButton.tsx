@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useTheming } from "@/contexts/ThemeContext";
+import { dark, light } from "@/components/theme/Theme";
 
 const ToggleHelper = styled.div`
   position: relative;
@@ -44,25 +46,33 @@ const ThemeToggleP = styled.p`
 
 const ThemeToggle = ({ onChange }: { onChange?: (value: boolean) => void }) => {
   const [isToggled, setIsToggled] = useState(false);
+  const { setCurrentTheme } = useTheming();
 
   useEffect(() => {
-    // Load theme from local storage
     const storedTheme = localStorage.getItem("theme");
     setIsToggled(storedTheme === "dark");
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = isToggled ? "light" : "dark";
+  const onChangeToggle = () => {
+    onChange && toggleTheme();
+  };
 
-    setIsToggled(!isToggled);
-    localStorage.setItem("theme", newTheme);
-    onChange && onChange(newTheme === "dark");
+  const toggleTheme = () => {
+    const newTheme = localStorage.getItem("theme") === "dark" ? light : dark;
+    const newThemeString =
+      localStorage.getItem("theme") === "dark" ? "light" : "dark";
+    setCurrentTheme(newTheme);
+    localStorage.setItem("theme", newThemeString);
+    setIsToggled((isToggled) => !isToggled);
   };
 
   return (
     <ThemeToggleDiv>
       <ThemeToggleP>Theme</ThemeToggleP>
-      <ToggleHelper onClick={toggleTheme} className={isToggled ? "on" : "off"}>
+      <ToggleHelper
+        onClick={onChangeToggle}
+        className={isToggled ? "on" : "off"}
+      >
         <div></div>
       </ToggleHelper>
     </ThemeToggleDiv>
