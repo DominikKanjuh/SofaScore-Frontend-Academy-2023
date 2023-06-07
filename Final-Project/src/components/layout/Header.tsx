@@ -28,6 +28,7 @@ const FirstRowWeb = styled.div`
   width: 100%;
   height: 64px;
   padding: 22px 0 22px 0;
+  position: relative;
 `;
 
 const StyledSofascoreLogoWeb = styled.div`
@@ -84,7 +85,6 @@ const SettingsButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 `;
 
 const Popup = styled.div<{ show: boolean }>`
@@ -202,10 +202,10 @@ const Header = () => {
         </StyledSofascoreLogoWeb>
         <SettingsButton onClick={togglePopup}>
           <Icon icon="settings" />
-          <Popup show={isSettingsOpen}>
-            <ThemeToggle onChange={(e) => {}} />
-          </Popup>
         </SettingsButton>
+        <Popup show={isSettingsOpen}>
+          <ThemeToggle onChange={(e) => {}} />
+        </Popup>
       </FirstRowWeb>
       <SecondRowWeb>
         <TabWeb
