@@ -14,10 +14,19 @@ const StyledSport = styled.div<{ isSelected: boolean }>`
   justify-content: space-between;
   height: 100%;
   padding: 16px 0 16px 0;
-  color: ${(props) => props.theme.color.surface.s1};
+  cursor: pointer;
+  gap: 4px;
+  color: ${(props) => props.theme.color.surface.s2};
+  color: ${(props) => props.isSelected && props.theme.color.surface.s1};
   border-bottom: ${(props) =>
     props.isSelected && `4px solid ${props.theme.color.surface.s1}`};
-  cursor: pointer;
+  padding: ${(props) => props.isSelected && `16px 0 12px 0`};
+
+  & > img {
+    background-color: ${(props) => props.theme.color.surface.s2};
+    background-color: ${(props) =>
+      props.isSelected && props.theme.color.surface.s1};
+  }
 `;
 
 const StyledSportName = styled.p`
@@ -31,7 +40,7 @@ const StyledSportName = styled.p`
   line-height: 1.14;
   letter-spacing: normal;
   text-align: left;
-  color: ${(props) => props.theme.color.surface.s1};
+  color: inherit;
 `;
 
 const SportLink = styled(Link)`
@@ -52,7 +61,7 @@ interface TabProps {
   targetLabel: string;
 }
 
-export const Tab: React.FC<TabProps> = ({
+export const TabWeb: React.FC<TabProps> = ({
   sport,
   currentSelection,
   targetLabel,

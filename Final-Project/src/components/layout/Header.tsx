@@ -4,12 +4,13 @@ import styled from "styled-components";
 import ThemeContext, { useTheming } from "@/contexts/ThemeContext";
 import ToggleButton from "../buttons/ToggleButton";
 import { dark, light } from "@/components/theme/Theme";
-import { Tab } from "../tabs/Tab";
+import { TabWeb } from "../tabs/TabWeb";
 import ThemeToggle from "../buttons/ToggleButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { log } from "console";
 import { useMobile } from "./Layout";
+import { TabMobile } from "../tabs/TabMobile";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -86,6 +87,15 @@ const MobileButtonsRight = styled.div`
   gap: 24px;
 `;
 
+const SecondRowMobile = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  background-color: ${(props) => props.theme.color.primary.default};
+`;
+
 const Header = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -119,6 +129,23 @@ const Header = () => {
           </Link>
         </MobileButtonsRight>
       </FirstRowMobile>
+      <SecondRowMobile>
+        <TabMobile
+          sport="football"
+          currentSelection={selectedLabel}
+          targetLabel={"/"}
+        />
+        <TabMobile
+          sport="basketball"
+          currentSelection={selectedLabel}
+          targetLabel={"/basketball"}
+        />
+        <TabMobile
+          sport="nfl"
+          currentSelection={selectedLabel}
+          targetLabel={"/american-football"}
+        />
+      </SecondRowMobile>
     </StyledHeader>
   ) : (
     <StyledHeader>
@@ -139,17 +166,17 @@ const Header = () => {
         </PaddingOnSettingsWeb>
       </FirstRowWeb>
       <SecondRowWeb>
-        <Tab
+        <TabWeb
           sport="football"
           currentSelection={selectedLabel}
           targetLabel={"/"}
         />
-        <Tab
+        <TabWeb
           sport="basketball"
           currentSelection={selectedLabel}
           targetLabel={"/basketball"}
         />
-        <Tab
+        <TabWeb
           sport="nfl"
           currentSelection={selectedLabel}
           targetLabel={"/american-football"}
