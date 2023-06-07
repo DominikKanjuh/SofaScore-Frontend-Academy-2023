@@ -1,24 +1,29 @@
-import { ThemeType, dark, light } from "@/components/theme/Theme";
-import { createContext, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { dark, light, ThemeType } from "@/components/theme/Theme";
 
 interface ThemeContextProps {
   currentTheme: ThemeType;
-  toggleTheme: () => void;
-  setCurrentTheme: (theme?: ThemeType) => void;
+  setCurrentTheme: (theme: ThemeType) => void;
 }
 
-const ThemeContext = createContext<ThemeContextProps>({
-  currentTheme: null,
-  toggleTheme: () => {},
+const ThemeContext = React.createContext<ThemeContextProps>({
+  currentTheme: light,
   setCurrentTheme: () => {},
 });
 
-export default function Theme({ children }) {
+const ThemeProviderWrapper = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>(light);
 
-  const toggleTheme = () => {
-    setCurrentTheme(currentTheme === light ? dark : light);
+  useEffect(() => {
+    // Load theme from local storage
+    const storedTheme = localStorage.getItem("theme");
+    setCurrentTheme(storedTheme === "dark" ? dark : light);
+  }, []);
+
+  const handleSetCurrentTheme = (theme: ThemeType) => {
+    setCurrentTheme(theme);
+    localStorage.setItem("theme", theme === dark ? "dark" : "light");
   };
 
   return (
@@ -26,14 +31,16 @@ export default function Theme({ children }) {
       <ThemeContext.Provider
         value={{
           currentTheme,
-          toggleTheme,
-          setCurrentTheme,
+          setCurrentTheme: handleSetCurrentTheme,
         }}
       >
         {children}
       </ThemeContext.Provider>
     </ThemeProvider>
   );
-}
+};
 
-export const useTheming = () => useContext(ThemeContext);
+export const useTheming = (): ThemeContextProps =>
+  React.useContext(ThemeContext);
+
+export default ThemeProviderWrapper;

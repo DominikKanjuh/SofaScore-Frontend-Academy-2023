@@ -117,12 +117,16 @@ const Header = () => {
           </SettingsButton>
           <Popup show={isSettingsOpen}>
             <ThemeToggle
-              value={true}
+              // value={true}
               onChange={(e) => {
                 if (e) {
                   setCurrentTheme(light);
+                  typeof window !== "undefined" &&
+                    localStorage.setItem("theme", "light");
                 } else {
                   setCurrentTheme(dark);
+                  typeof window !== "undefined" &&
+                    localStorage.setItem("theme", "dark");
                 }
               }}
             />
@@ -145,7 +149,7 @@ const Header = () => {
           </SettingsButton>
           <Popup show={isSettingsOpen}>
             <ThemeToggle
-              value={true}
+              // value={true}
               onChange={(e) => {
                 if (e) {
                   setCurrentTheme(light);
