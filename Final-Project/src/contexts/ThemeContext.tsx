@@ -23,13 +23,15 @@ const ThemeProviderWrapper = ({ children }) => {
       : light;
     const storedTheme = localStorage.getItem("theme");
 
-    setCurrentTheme(
-      preferedTheme || (storedTheme === "dark" ? dark : light) || light
-    );
-    localStorage.setItem(
-      "theme",
-      preferedTheme === dark ? "dark" : "light" || storedTheme || "light"
-    );
+    let initialTheme = light;
+    if (storedTheme) {
+      initialTheme = storedTheme === "dark" ? dark : light;
+    } else if (preferedTheme) {
+      initialTheme = preferedTheme;
+    }
+
+    setCurrentTheme(initialTheme);
+    localStorage.setItem("theme", initialTheme === dark ? "dark" : "light");
   }, []);
 
   const handleSetCurrentTheme = (theme: ThemeType) => {
