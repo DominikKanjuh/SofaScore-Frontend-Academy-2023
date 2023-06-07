@@ -88,7 +88,7 @@ const MobileButtonsRight = styled.div`
 
 const Header = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { setCurrentTheme } = useTheming();
+
   const togglePopup = () => {
     setIsSettingsOpen((isSettingsOpen) => !isSettingsOpen);
   };
@@ -111,13 +111,12 @@ const Header = () => {
           <Icon icon="sofascore" width={132} />
         </Link>
         <MobileButtonsRight>
-          <Icon icon="trophy" />
-          <SettingsButton onClick={togglePopup}>
+          <Link href={"/league"}>
+            <Icon icon="trophy" />
+          </Link>
+          <Link href={"/settings"}>
             <Icon icon="settings" />
-          </SettingsButton>
-          <Popup show={isSettingsOpen}>
-            <ThemeToggle onChange={(e) => {}} />
-          </Popup>
+          </Link>
         </MobileButtonsRight>
       </FirstRowMobile>
     </StyledHeader>
