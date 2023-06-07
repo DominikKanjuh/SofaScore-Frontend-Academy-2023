@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Icon from "../icon/Icon";
 import styled from "styled-components";
 import ThemeContext, { useTheming } from "@/contexts/ThemeContext";
@@ -6,6 +6,9 @@ import ToggleButton from "../buttons/ToggleButton";
 import { dark, light } from "@/components/theme/Theme";
 import { Tab } from "../tabs/Tab";
 import ThemeToggle from "../buttons/ToggleButton";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { log } from "console";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -72,13 +75,24 @@ const Header = () => {
     setIsSettingsOpen((isSettingsOpen) => !isSettingsOpen);
   };
 
+  const [selectedLabel, setSelectedLabel] = useState("");
+
+  const router = useRouter();
+  useEffect(() => {
+    let route = router.asPath.split("/")[1];
+    route = "/" + route;
+    setSelectedLabel(route);
+  }, [router]);
+
   return (
     <StyledHeader>
       <FirstRow>
         <HiddenIcon>
           <Icon icon="settings" />
         </HiddenIcon>
-        <Icon icon="sofascore" width={132} />
+        <Link href="/">
+          <Icon icon="sofascore" width={132} />
+        </Link>
         <PaddingOnSettings>
           <SettingsButton onClick={togglePopup}>
             <Icon icon="settings" />
@@ -98,9 +112,21 @@ const Header = () => {
         </PaddingOnSettings>
       </FirstRow>
       <SecondRow>
-        <Tab sport="football" />
-        <Tab sport="basketball" />
-        <Tab sport="nfl" />
+        <Tab
+          sport="football"
+          currentSelection={selectedLabel}
+          targetLabel={"/"}
+        />
+        <Tab
+          sport="basketball"
+          currentSelection={selectedLabel}
+          targetLabel={"/basketball"}
+        />
+        <Tab
+          sport="nfl"
+          currentSelection={selectedLabel}
+          targetLabel={"/american-football"}
+        />
       </SecondRow>
     </StyledHeader>
   );

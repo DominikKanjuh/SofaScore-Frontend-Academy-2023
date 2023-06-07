@@ -1,23 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "../icon/Icon";
+import Link from "next/link";
 
 const StyledSportDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   padding: 0px 8px 0px 8px;
 `;
 
-const StyledSport = styled.div`
+const StyledSport = styled.div<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   padding: 16px 0 16px 0;
   color: ${(props) => props.theme.color.surface.s1};
-  border-bottom: 2px solid ${(props) => props.theme.color.surface.s1};
+  border-bottom: ${(props) =>
+    props.isSelected && `4px solid ${props.theme.color.surface.s1}`};
+  cursor: pointer;
 `;
 
 const StyledSportName = styled.p`
@@ -34,6 +34,10 @@ const StyledSportName = styled.p`
   color: ${(props) => props.theme.color.surface.s1};
 `;
 
+const SportLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const sports = {
   football: "Football",
   basketball: "Basketball",
@@ -44,15 +48,23 @@ type SportType = keyof typeof sports;
 
 interface TabProps {
   sport: SportType;
+  currentSelection: string;
+  targetLabel: string;
 }
 
-export const Tab: React.FC<TabProps> = ({ sport }) => {
+export const Tab: React.FC<TabProps> = ({
+  sport,
+  currentSelection,
+  targetLabel,
+}) => {
   return (
     <StyledSportDiv>
-      <StyledSport>
-        <Icon icon={sport} width={16} />
-        <StyledSportName>{sports[sport]}</StyledSportName>
-      </StyledSport>
+      <SportLink href={targetLabel}>
+        <StyledSport isSelected={currentSelection == targetLabel}>
+          <Icon icon={sport} width={16} />
+          <StyledSportName>{sports[sport]}</StyledSportName>
+        </StyledSport>
+      </SportLink>
     </StyledSportDiv>
   );
 };
