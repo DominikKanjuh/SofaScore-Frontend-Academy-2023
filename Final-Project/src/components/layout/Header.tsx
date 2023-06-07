@@ -30,14 +30,40 @@ const FirstRowWeb = styled.div`
   padding: 22px 0 22px 0;
 `;
 
-const HiddenIconWeb = styled.div`
-  visibility: hidden;
+const StyledSofascoreLogoWeb = styled.div`
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  & > * {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 `;
 
-const PaddingOnSettingsWeb = styled.div`
-  height: 24px;
-  padding-right: 24px;
-  position: relative;
+const StyledSofascoreLogoMobile = styled.div`
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  & > * {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+`;
+
+const HiddenIconWeb = styled.div`
+  height: 64px;
+  width: 64px;
+  visibility: hidden;
 `;
 
 const SecondRowWeb = styled.div`
@@ -51,16 +77,20 @@ const SecondRowWeb = styled.div`
 
 const SettingsButton = styled.button`
   background-color: ${(props) => props.theme.color.primary.default};
-  height: 24px;
-  width: 24px;
+  height: 64px;
+  width: 64px;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 `;
 
 const Popup = styled.div<{ show: boolean }>`
   position: absolute;
   z-index: 1;
-  top: 380%;
+  top: 160%;
   right: 0;
   left: auto;
   width: 200px;
@@ -76,15 +106,25 @@ const FirstRowMobile = styled.div`
   align-items: center;
   width: 100%;
   height: 48px;
-  padding: 14px 16px 14px 16px;
+  padding: 14px 0px 14px 16px;
 `;
 
 const MobileButtonsRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  gap: 24px;
+  height: 48px;
+  width: 96px;
+  margin-right: 4px;
+
+  & > * {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 `;
 
 const SecondRowMobile = styled.div`
@@ -117,9 +157,12 @@ const Header = () => {
   return isMobile ? (
     <StyledHeader>
       <FirstRowMobile>
-        <Link href="/">
-          <Icon icon="sofascore" width={132} />
-        </Link>
+        <StyledSofascoreLogoMobile>
+          <Link href="/">
+            <Icon icon="sofascore" width={132} />
+          </Link>
+        </StyledSofascoreLogoMobile>
+
         <MobileButtonsRight>
           <Link href={"/league"}>
             <Icon icon="trophy" />
@@ -153,17 +196,17 @@ const Header = () => {
         <HiddenIconWeb>
           <Icon icon="settings" />
         </HiddenIconWeb>
-        <Link href="/">
-          <Icon icon="sofascore" width={132} />
-        </Link>
-        <PaddingOnSettingsWeb>
-          <SettingsButton onClick={togglePopup}>
-            <Icon icon="settings" />
-          </SettingsButton>
+        <StyledSofascoreLogoWeb>
+          <Link href="/">
+            <Icon icon="sofascore" width={132} />
+          </Link>
+        </StyledSofascoreLogoWeb>
+        <SettingsButton onClick={togglePopup}>
+          <Icon icon="settings" />
           <Popup show={isSettingsOpen}>
             <ThemeToggle onChange={(e) => {}} />
           </Popup>
-        </PaddingOnSettingsWeb>
+        </SettingsButton>
       </FirstRowWeb>
       <SecondRowWeb>
         <TabWeb
