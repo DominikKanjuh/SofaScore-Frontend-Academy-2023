@@ -90,7 +90,7 @@ const SettingsButton = styled.button`
 const Popup = styled.div<{ show: boolean }>`
   position: absolute;
   z-index: 1;
-  top: 160%;
+  top: 170%;
   right: 0;
   left: auto;
   width: 200px;
@@ -162,7 +162,6 @@ const Header = () => {
             <Icon icon="sofascore" width={132} />
           </Link>
         </StyledSofascoreLogoMobile>
-
         <MobileButtonsRight>
           <Link href={"/league"}>
             <Icon icon="trophy" />
