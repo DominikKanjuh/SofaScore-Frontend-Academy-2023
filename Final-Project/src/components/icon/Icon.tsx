@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const icons = {
-  settings: "/assets/icons/settings.svg",
   sofascore: "/assets/icons/logo_sofascore.svg",
+  settings: "/assets/icons/settings.svg",
+  trophy: "/assets/icons/trophy.svg",
   football: "/assets/icons/football.svg",
   basketball: "/assets/icons/basketball.svg",
   nfl: "/assets/icons/nfl.svg",

@@ -20,7 +20,7 @@ const StyledHeader = styled.div`
   background-color: ${(props) => props.theme.color.primary.default};
 `;
 
-const FirstRow = styled.div`
+const FirstRowWeb = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,14 +29,23 @@ const FirstRow = styled.div`
   padding: 22px 0 22px 0;
 `;
 
-const HiddenIcon = styled.div`
+const HiddenIconWeb = styled.div`
   visibility: hidden;
 `;
 
-const PaddingOnSettings = styled.div`
+const PaddingOnSettingsWeb = styled.div`
   height: 24px;
   padding-right: 24px;
   position: relative;
+`;
+
+const SecondRowWeb = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 100%;
+  background-color: ${(props) => props.theme.color.primary.default};
 `;
 
 const SettingsButton = styled.button`
@@ -60,13 +69,21 @@ const Popup = styled.div<{ show: boolean }>`
   border-radius: 0 0 0 16px;
 `;
 
-const SecondRow = styled.div`
+const FirstRowMobile = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 14px 16px 14px 16px;
+`;
+
+const MobileButtonsRight = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
-  width: 100%;
-  background-color: ${(props) => props.theme.color.primary.default};
+  height: 100%;
+  gap: 24px;
 `;
 
 const Header = () => {
@@ -87,16 +104,14 @@ const Header = () => {
 
   const { isMobile } = useMobile();
 
-  return (
+  return isMobile ? (
     <StyledHeader>
-      <FirstRow>
-        <HiddenIcon>
-          <Icon icon="settings" />
-        </HiddenIcon>
+      <FirstRowMobile>
         <Link href="/">
           <Icon icon="sofascore" width={132} />
         </Link>
-        <PaddingOnSettings>
+        <MobileButtonsRight>
+          <Icon icon="trophy" />
           <SettingsButton onClick={togglePopup}>
             <Icon icon="settings" />
           </SettingsButton>
@@ -112,9 +127,37 @@ const Header = () => {
               }}
             />
           </Popup>
-        </PaddingOnSettings>
-      </FirstRow>
-      <SecondRow>
+        </MobileButtonsRight>
+      </FirstRowMobile>
+    </StyledHeader>
+  ) : (
+    <StyledHeader>
+      <FirstRowWeb>
+        <HiddenIconWeb>
+          <Icon icon="settings" />
+        </HiddenIconWeb>
+        <Link href="/">
+          <Icon icon="sofascore" width={132} />
+        </Link>
+        <PaddingOnSettingsWeb>
+          <SettingsButton onClick={togglePopup}>
+            <Icon icon="settings" />
+          </SettingsButton>
+          <Popup show={isSettingsOpen}>
+            <ThemeToggle
+              value={true}
+              onChange={(e) => {
+                if (e) {
+                  setCurrentTheme(light);
+                } else {
+                  setCurrentTheme(dark);
+                }
+              }}
+            />
+          </Popup>
+        </PaddingOnSettingsWeb>
+      </FirstRowWeb>
+      <SecondRowWeb>
         <Tab
           sport="football"
           currentSelection={selectedLabel}
@@ -130,7 +173,7 @@ const Header = () => {
           currentSelection={selectedLabel}
           targetLabel={"/american-football"}
         />
-      </SecondRow>
+      </SecondRowWeb>
     </StyledHeader>
   );
 };

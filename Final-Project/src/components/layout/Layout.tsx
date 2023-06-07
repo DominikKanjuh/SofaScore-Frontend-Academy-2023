@@ -16,7 +16,7 @@ interface MobileContextProps {
 }
 
 const MobileContext = createContext<MobileContextProps>({
-  isMobile: false,
+  isMobile: null,
 });
 
 export default function Layout({ children }) {
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
   const matches = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
-    setIsMobile((prevMatches) => !prevMatches);
+    setIsMobile(!matches);
   }, [matches]);
 
   return (
